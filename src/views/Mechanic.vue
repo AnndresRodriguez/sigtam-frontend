@@ -14,24 +14,24 @@
                       <img src="../assets/img/auth-img/mecanico-130x130.jpg" alt="Foto Admin" style="border-radius:50%">
                       <h5 class="mt-2">Mecánico</h5>
                   </div>
-                 
-
+              
               </div>
-              <form action="#">
+              <form @submit.prevent="initSession()">
                 <div class="form-group">
                   <label class="label">Correo Electrónico</label>
                   <div class="input-group">
-                    <input type="email" class="form-control form-control-lg" placeholder="micorreo@correo.com">
+                    <input type="email" class="form-control form-control-lg" v-model="userEmail" placeholder="micorreo@correo.com">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="label">Contraseña</label>
                   <div class="input-group">
-                    <input type="password" class="form-control form-control-lg" placeholder="*********">
+                    <input type="password" class="form-control form-control-lg" v-model="userPass" placeholder="*********">
                   </div>
                 </div>
                 <div class="form-group mb-4">
-                  <button class="btn btn-primary submit-btn btn-block">Iniciar Sesión</button>
+                  <!-- <button class="btn btn-primary submit-btn btn-block">Iniciar Sesión</button> -->
+                  <a href="http://localhost/Mecanicapp-Mecanico/" class="btn btn-primary submit-btn btn-block">Iniciar Sesión</a>
                 </div>
                     <ul class="auth-footer">
                       <li>
@@ -65,9 +65,44 @@
 </template>
 
 <script>
+
+import axios from "axios";
 export default {
 
-}
+  data() {
+    return {
+       userEmail: '',
+       userPass: ''
+    }
+  },
+  methods:{
+      initSession() {
+        axios.post("http://localhost:3000/auth/login", {
+          email: this.userEmail,
+          pass: this.userPass
+        })
+       .then(res => { 
+          // localStorage.setItem('token', res.data.token);
+          let peticion = axios.create({
+            headers: {'authorization': `Bearer ${res.data.token}` }
+          })
+          peticion.post('http://localhost:3000/auth/api/protected', {
+            user: res.data.user
+          })
+          .then(res => {
+            if(res.data.status === 'loggedin'){
+              console.log(res.data.user);
+              this.$router.push({name: 'about'});
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+       })  
+    }
+  }
+
+  } 
 </script>
 
 <style>

@@ -13,25 +13,24 @@
                   <div class="d-flex flex-column justify-content-between align-items-center">
                       <img src="../assets/img/auth-img/logo-admin-250x250.jpg" alt="Foto Admin" style="border-radius:50%" height="130" width="130">
                       <h5 class="mt-2">Administrador</h5>
-                  </div>
-                 
-
+                  </div>                 
               </div>
               <form action="#">
                 <div class="form-group">
                   <label class="label">Correo Electrónico</label>
                   <div class="input-group">
-                    <input type="email" class="form-control form-control-lg" placeholder="micorreo@correo.com">
+                    <input type="email" class="form-control form-control-lg" v-model="userEmail" placeholder="micorreo@correo.com">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="label">Contraseña</label>
                   <div class="input-group">
-                    <input type="password" class="form-control form-control-lg" placeholder="*********">
+                    <input type="password" class="form-control form-control-lg" v-model="userPass" placeholder="*********">
                   </div>
                 </div>
                 <div class="form-group mb-4">
-                  <button class="btn btn-primary submit-btn btn-block">Iniciar Sesión</button>
+                   <!-- <a href="http://gidis.ufps.edu.co/tallerapp/index.html" class="btn btn-primary submit-btn btn-block">Iniciar Sesión</a> -->
+                  <button class="btn btn-primary submit-btn btn-block" @click="initSession()">Iniciar Sesión</button>
                 </div>
                     <ul class="auth-footer">
                       <li>
@@ -65,7 +64,19 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
+  data() {
+    return {
+       userEmail: '',
+       userPass: ''
+    }
+  },
+  methods:{
+    initSession(){
+
+    }
+  }
 
 }
 </script>

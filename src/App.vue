@@ -15,9 +15,9 @@ import $ from "jquery"
 import 'popper.js'
 import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import '@/assets/css/base.css'
-import '@/assets/css/login.css'
-
+import '@/assets/css/base.css';
+import '@/assets/css/login.css';
+import '@/assets/css/dashboard.css';
 
 export default {
 
@@ -29,5 +29,3 @@ export default {
 </style>
 
 
-<style>
-</style>

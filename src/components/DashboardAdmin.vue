@@ -1,10 +1,10 @@
 <template>
-    <h2>Hola Esto es el componente Admin</h2>
+ <router-view></router-view>
 </template>
-
 <script>
+ 
 export default {
-
+    
 }
 </script>
 
