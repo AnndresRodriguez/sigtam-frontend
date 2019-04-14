@@ -3,7 +3,8 @@
              <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="/dashboard">
-          <img src="../assets/img/logo.svg" alt="logo" />
+          <!-- <img src="../assets/img/logo.svg" alt="logo" /> -->
+          <h3 class="mt-3" style="color:black">Mecanicapp</h3>
         </a>
         <a class="navbar-brand brand-logo-mini" href="index.html">
           <img src="../assets/img/logo-mini.svg" alt="logo" />

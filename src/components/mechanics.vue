@@ -30,23 +30,23 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+
+                        <tr v-for="mechanic in mechanics" :key="mechanic.id">
                           <td class="py-1">
                             <img src="../assets/img/faces/icono-mecanico.jpg" alt="image" />
                           </td>
                           <td>
-                            Andrés Joel Carrillo Rodríguez
+                            {{ mechanic.nombre }} {{mechanic.apellidos}}
+                          </td>
+                           <td>
+                            {{ mechanic.cedula }} 
                           </td>
                           <td>
-                            1091671219
+                            {{ mechanic.email }} 
                           </td>
                           <td>
-                            andresjoe24@gmail.com
+                            {{ mechanic.numeroCelular }} 
                           </td>
-                          <td>
-                            3112255637
-                          </td>
-                          <!-- <td>06/12/1994</td> -->
                           <td> 
                             <button type="button" class="btn btn-icons btn-rounded btn-primary">
                              <i class="mdi mdi-eye"></i>
@@ -55,13 +55,28 @@
                               <i class="mdi mdi-pencil"></i>
                             </button>
                             <button type="button" class="btn btn-icons btn-rounded btn-danger">
-                             <!-- <i class="mdi mdi-delete"></i> -->
+                             <i class="mdi mdi-delete"></i>
+                            </button>
+                          
+                          </td>
+                        </tr>
+
+                        <!-- <tr>
+                      
+                          <td> 
+                            <button type="button" class="btn btn-icons btn-rounded btn-primary">
+                             <i class="mdi mdi-eye"></i>
+                            </button>
+                            <button type="button" class="btn btn-icons btn-rounded btn-success">
+                              <i class="mdi mdi-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-icons btn-rounded btn-danger">
                              <i class="mdi mdi-delete"></i>
                             </button>
                           
                           </td>
                       
-                        </tr>
+                        </tr> -->
                    
                       </tbody>
                     </table>
@@ -72,7 +87,37 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
+
+    mounted(){
+
+      this.getMechanics()
+
+    },
+
+    data(){
+      return {
+
+        mechanics: []
+
+      }
+    },
+    methods: {
+       getMechanics(){
+         axios.get('http://localhost:3000/usuarios/mecanicos')
+         .then( res => {
+
+           this.mechanics = res.data
+           
+
+         })
+
+       }
+    }
+
 
 }
 </script>

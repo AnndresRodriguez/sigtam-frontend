@@ -116,13 +116,12 @@
         {
           "id": 1,
           "marca": "Chevrolet",
-          "modelo": "Alto",
+          "modelo": "Camaro",
           "placa": "MIQ-123",
           "kilometraje": "2700",
           "anio": "2015",
           "color": "Gris",
           "motor": "Gasolina",
-          "llantasCompletas": true,
           "marcallantas": "Bridgestone",
           "llantas": "4",
           "llantaRepuesto": true
@@ -171,7 +170,7 @@
       },
       {
         "id": 10,
-        "nombre": "Caliración de Gases"
+        "nombre": "Calibración de Gases"
       },
       {
         "id": 11,
@@ -193,7 +192,59 @@
     "carroceria": [
       {
         "id": 1,
-        "nombre": "Capo Delantero"  
+        "nombre": "Capó Delantero"  
+      },
+      {
+        "id": 2,
+        "nombre": "Bisagra del Capó"  
+      },
+      {
+        "id": 3,
+        "nombre": "Aleta delantera"  
+      },
+      {
+        "id": 4,
+        "nombre": "Marco de Luna"  
+      },
+      {
+        "id": 5,
+        "nombre": "Techo"  
+      },
+      {
+        "id": 6,
+        "nombre": "Refuerzo posterior del techo"  
+      },
+      {
+        "id": 7,
+        "nombre": "Porton Trasero"  
+      },
+      {
+        "id": 8,
+        "nombre": "Faldón"  
+      },
+      {
+        "id": 9,
+        "nombre": "Aleta Trasera"  
+      },
+      {
+        "id": 10,
+        "nombre": "Marco de luna de Custodia"  
+      },
+      {
+        "id": 11,
+        "nombre": "Lateral Completo"  
+      },
+      {
+        "id": 12,
+        "nombre": "Puerta delantera"  
+      },
+      {
+        "id": 13,
+        "nombre": "Puerta Trasera"  
+      },
+      {
+        "id": 14,
+        "nombre": "Tapa del depósito de Combustible"  
       }
     ],
 
@@ -608,8 +659,8 @@
            "marca": "METZGER",
            "unidadDeMedida": "unidad",
            "cantidadEnStock": 10,
-           "precioCompra": 6613000,
-           "precioVenta": 6813400,
+           "precioCompra": 661300,
+           "precioVenta": 681340,
            "precioMasIva": 0 
         },
         {
@@ -727,6 +778,57 @@
       "id": 8,
       "nombre": "Ford",
       "modelos": ["Fusion", "Crown", "Victoria", "Falcon", "Festiva", "Fiesta", "Focus", "Granada", "Laser", "Mustang", "Taurus", "Hot", "Rod", "Escort", "Ltd", "555E", "Chiva", "Ecosport", "Panel", "Edge", "Flex", "Courier", "Escape", "Expedition", "Explorer", "Llanero", "Bronco", "Piragua", "Aeromax", "Cargo", "815", "F350", "600", "F8000", "F 600", "F 350[7]", "F9000", "F-150", "Cargo 1019", "Cargo 816", "F250", "Nueva", "Ranger", "Explorer", "F100", "F-150", "F350", "Ranger"]
+    },
+    {
+      "id": 9,
+      "nombre": "Honda",
+      "modelos": ["Accord", "Civic", "CRX", "Fit", "Integra", "Legend", "Prelude", "CR-V", "Pilot", "Hr-v", "WRV", "Ridgeline", "Odyssey"]
+    },
+    {
+      "id": 10,
+      "nombre": "Hyundai",
+      "modelos": ["Elantra Supreme", "i30", "Genesis", "Accent", "Atos", "Elantra", "Excel", "Getz", "Veloster", "New Elantra", "Santro", "Sonata", "Tiburon", "I45", "i25 Accent", "i35", "i25",  "Veloster", "Equus", "Azera", "i40", "EON", "Grand i10 Illusion", "Grand i10", "i20", "Ioniq", "Tucson", "Veracruz", "Santafe", "Terracan", "Creta", "HD 1000", "HD 270", "Porter", "Starex", "HD 120", "170", "H100", "HD72", "HD78", "HD65", "H1", " Grand Starex",  "County", "Aerocity", "Grace", "Vision", "Grand City Taxi", "Grand Pony Taxi", "Grand I10", "Gyro", "Grand Metro Taxi", "City Taxi", "Santamo"]
+    },
+    {
+      "id": 11,
+      "nombre": "Jeep",
+      "modelos": ["Compass", "Patriot", "Commander", "Cherokee", "Grand Cherokee", "Wagoneer", "Grand Wagoneer", "Renegade", "Willys", "Liberty", "CJ5", "CJ6", "CJ7", "Comando", "Scrambler", "Wrangler", "New Compass"]
+    },
+    {
+      "id": 12,
+      "nombre": "Kia",
+      "modelos": ["Rio Xcite", "New Rio", "Rio Stylus", "Cadenza", "Cerato", "Picanto", "Pride", "Rio", "Sephia", "Spectra", "Optima", "Rio Spice", "Picanto iON", "Quoris", "Cerato Forte", "Cerato Koup", "Cerato Pro", "Tonic", "Cerato Vivro", "Stinger", "Carens", "Sedona", "Mohave", "Carens Rondo", "Soul", "Sportage Revolution", "Grand Sportage", "Sorento", "Sportage", "Sportage FQ", "Sorento Radical", "Niro", "Tonic", "Ceres", "K 2400", "K 2700", "K 3000S", "Carnival", "Pregio", "Grand Pregio", "Picanto", "Eko", "Grand Sephia", "Super Eko", "Ekotaxi", "Grand Ekotaxi", "Carnival", "Pregio"]
+    },
+    {
+      "id": 12,
+      "nombre": "Mazda",
+      "modelos": ["Speed 3", "2", "3 All New", "121", "3", "6", "626", "Allegro", "Demio", "Matsuri 625", "MX5", "323", "MX-5 Miata", " CX-5", "5", "CX-7", "CX-9", "MPV", "Tribute", "CX-3", "T", "T45", "BT-50", "B2200", "B2000", "B1600", "B2600", "323"]
+    },
+    {
+      "id": 13,
+      "nombre": "Mitsubichi",
+      "modelos": ["Colt", "Eclipse", "Galant", "Lancer", "New Lancer", "Mirage", "New Outlander", "Pajero", "Endeavor", "ASX", "Nativa", "Outlander", "LO42", "Montero", "New Montero", "New Nativa", "Outlander", "New Outlander", "WAGON", "L200", "Fuso", "Canter", "L300", "Sportero", "L200", "Expo", "L300", "Space Wagon"]
+    },
+    {
+      "id": 14,
+      "nombre": "Nissan",
+      "modelos": ["Tiida", "Micra", "Datsun", "March", "280Z", "370Z", "350z", "AD Wagon", "Almera", "Altima", "Bluebird", "Maxima", "Primera", "Sentra", "Sunny", "Versa", "Note", "New Sentra", "New March", "New Versa", "Leaf", "New", "Pathfinder", "Patrol", "X-trail", "I Qashqai", "Quest", "Armada", "Murano", "Pathfinder", "X-Trail", "Terrano II", "Nuevo Patrol", "Juke", "Qashqai 2",  "X-trail Classic", "New Qashqai", "Kicks", "MT3000", "U41", "Cabstar", "Urvan", "TK55", "Montacarga", "D22 Frontier", "Chasis", "Frontier", "Navara", " Frontier NP300", "Titan", "Frontier", "NP 300", "Tl720", "D21", "D22", "Quest", "Vanette"]
+    },
+    {
+      "id": 15,
+      "nombre": "Renault",
+      "modelos": ["Megane II", "Logan", "Sandero", "Symbol", "II", "Stepway", "Scala", "r12", "r18", "r19", "r21", "r4", "r6", "r9", "Clio", "Etoile", "Laguna", "Megane", "Scenic", "Symbol", "Twingo", "Fluence", "Megane III", "Nuevo Twingo", "Twizy", "Zoe", "Kwid", "Grand Scenic II", "Koleos", "Duster", "Nueva Koleos", "Stepway", "Captur", "Midlum 270.18", "Kerax 320.28", "Master", "Trafic", "Kangoo", "Nueva Master", "Trafic", "Duster Oroch", "Alaskan", "Citius", "Symbol", "Logan"]
+    },
+    {
+      "id": 16,
+      "nombre": "Toyota",
+      "modelos": ["Supra", "Camry", "Celica", "Corolla", "Corona", "Crown", "Tercel", "Yaris", "Prius", "Previa", "Rav 4", "Sequoia", "Highlander", "FJ Cruiser", "Land Cruiser", "Fortuner", "4Runner", "Burbuja", "Prado", "Hilux", "SW4", "Rush","FJ70", "FJ40", "FJ43", "FJ", "Land Cruiser 200", "Sumo", "Montacarga", "Tundra", "Tacoma", "Hilux", "Sienna"]
+    },
+    {
+      "id": 16,
+      "nombre": "Volkswagen",
+      "modelos": ["Bora", "Nuevo Jetta", "Escarabajo", "Fastback", "Fox", "Gol", "Golf", "Jetta", "New Beetle", "Parati", "Passat", "Polo", "Scirocco", "Variant", "Vento", "Voyage", "Buggy", "Beetle", "Cross Up", "Virtus", "Touareg", "Space Fox", "Tiguan", "Crossfox", "Worker", "Transporter", "9-150", "Crafter", "Delivery", "Constellation", "Crafter 50", "Transporter", "LT 35", "LT 46", "Volksbus", "Saveiro", "Amarok", "Kombi", "Crafter 35"]
     }
+
   ]
 }
