@@ -4,7 +4,7 @@
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="/dashboard">
           <!-- <img src="../assets/img/logo.svg" alt="logo" /> -->
-          <h3 class="mt-3" style="color:black">Mecanicapp</h3>
+          <h3 class="mt-3" style="color:black">SIGTAM</h3>
         </a>
         <a class="navbar-brand brand-logo-mini" href="index.html">
           <img src="../assets/img/logo-mini.svg" alt="logo" />

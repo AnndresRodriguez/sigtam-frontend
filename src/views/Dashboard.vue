@@ -4,7 +4,13 @@
        <sideBarAdmin></sideBarAdmin>
        <div class="main-panel">
          <div class="content-wrapper mechanic-class">
-           <router-view></router-view>
+           
+           
+             <router-view></router-view>
+           
+            
+  
+           
          </div>
          
        </div>
