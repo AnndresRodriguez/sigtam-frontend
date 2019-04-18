@@ -7,6 +7,7 @@ import Dashboard from "./views/Dashboard.vue";
 import Main from "./components/mainPanelAdmin.vue";
 import Container from "./components/DashboardAdmin.vue";
 import Mecanicos from "./components/mechanics.vue";
+import Clientes from "./components/clientes.vue";
 
 Vue.use(Router);
 
@@ -47,10 +48,14 @@ export default new Router({
               path: "/mecanicos",
               component: Mecanicos,
               name: "mecanicos"
+            },
+            {
+              path: "/clientes",
+              name: "clientes",
+              component: Clientes
             }
           ]
         }
-        
       ]
     }
   ]

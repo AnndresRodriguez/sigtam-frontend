@@ -40,10 +40,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="menu-icon mdi mdi-account-star"></i>
-              <span class="menu-title">Clientes</span>
-            </a>
+            <router-link :to="{ name: 'clientes'}" class="nav-link">
+                <i class="menu-icon mdi mdi-account-star"></i>
+                <span class="menu-title">Clientes</span>
+            </router-link>
           </li>  
         </ul>
       </nav>
