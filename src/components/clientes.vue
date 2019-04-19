@@ -123,9 +123,9 @@
             </div>
           </div>
       </div>
-      <!-- Fin Modal Editar Mecanico -->
+      <!-- Fin Modal Editar Cliente -->
 
-     <!-- Modal Añadir Mecanico -->
+     <!-- Modal Añadir cliente -->
   <div class="modal fade" id="modalClienteNuevo" tabindex="-1" role="dialog" aria-labelledby="modalClientNuevo" aria-hidden="true">
   <div class="modal-dialog " role="document">
     <div class="modal-content">
@@ -140,11 +140,13 @@
                   <div class="card">
                     <div class="card-body">
                       <p class="text-primary">
-                        Los Campos marcados con (*) no pueden quedar vacíos
+                        Los Campos marcados con (*) no pueden quedar vacíos <br>
+                        Es Obligatorio Añadir un Auto al Cliente Nuevo
                         </p>
                       <form class="forms-sample" @submit.prevent="addClient()" enctype="multipart/form-data">
-                        
-                         <div class="row">
+                      <template v-if="!addCar">
+
+                          <div class="row">
                            <div class="form-group col-md-6">
                          <label for="inputNombre">Nombre (*)</label>
                          <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" required v-model="nombres">
@@ -154,7 +156,7 @@
                           <input type="text" class="form-control" id="inputApellidos" placeholder="Apellidos" required  v-model="apellidos">
                         </div>
 
-                         </div>
+                      </div>
 
                           <div class="row">
 
@@ -171,26 +173,26 @@
                           
                           <div class="row">
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                <label for="inputCelular">Celular (*)</label>
                                <input type="text" class="form-control" id="inputCelular" placeholder="Celular" required v-model="celular">
                             </div>
 
-                            <div class="form-group col-md-6">
-                               <div class="form-group d-flex flex-row justify-content-between">
-                                  <button type="button" class="btn btn-success btn-fw mt-4"> 
+                            <div class="form-group col-md-8">
+                               <div class="form-group d-flex flex-row justify-content-between mt-4">
+                                  <button type="button" @click="addCar=true" class="btn btn-success btn-fw mt-4git log btn-block"> 
                                   <i class="mdi mdi-car-hatchback"></i>
-                                    Añadir Vehiculo
-                                  </button>
+                                    <template v-if="addDataNewCar">Editar Datos del Vehiculo</template>
+                                    <template v-else>Añadir Vehiculo</template>
+                                  </button>   
                                </div>
 
                             </div>
 
                           </div>
-                         
-                         
-                         
 
+                      
+                         
                         <div class="d-flex flex-row justify-content-between">
                           <button data-dismiss="modal" class="btn btn-light">Cancelar</button> 
                           <button type="submit" class="btn btn-primary btn-fw"> 
@@ -199,6 +201,96 @@
                         </button>
                         
                         </div>
+                      </template>
+                         
+                      <template v-else>
+                        <div class="row ticket-card mt-3 border-bottom mb-3">
+                          <div class="ticket-details col-md-12">
+                             <div class="row">
+                                <div class="col-md-12">
+                                  <h4 class="card-title">Insertar Vehiculo a Cliente</h4>
+
+                                <template v-if="alertInvalid">
+                                  <div class="row">
+                                  <div class="form-group col-md-12">
+                                    <div class="alert alert-warning" role="alert">
+                                      <small>Debe Llenar los campos Obligatorios</small>
+                                    </div>
+                                  </div>
+                                </div>
+                                </template>
+
+                                   <div class="row">
+                                      <div class="form-group col-md-6">
+                                        <label>Marca (*)</label>
+                                          <select class="form-control" @change="viewMarcas(marcaselected)" v-model="marcaselected">
+                                            <option value selected disabled>Seleccione una Marca</option>
+                                            <option v-for="(value, key) in marcas" :key="key" :value="value" >{{value}}</option>
+                                          </select>
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                         <label>Modelo (*)</label>
+                                         <select class="form-control" @change="selectModel(modelselected)" v-model="modelselected">
+                                          <option value selected disabled>Seleccione un Modelo</option>
+                                          <option v-for="(marca, key) in modelos" :key="key">{{marca}}</option>
+                                         </select>
+                                      </div>
+                                    </div> 
+                                    
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputPlaca">Placa (*)</label>
+                                    <input type="text" class="form-control" id="inputplaca" v-model="nuevaplacaCarro"> 
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label>Kilometraje</label>
+                                  <input type="text" class="form-control" v-model="nuevakilometrajeCarro">
+                                </div>
+                            </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                             <label>Año</label>
+                                             <input type="text" class="form-control" v-model="nuevaanioCarro">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                           <label>Color</label>
+                                           <input type="text" class="form-control" v-model="nuevacolorCarro">  
+                                        </div>
+                                    </div>
+        
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                              <label>Motor</label>
+                                              <input type="text" class="form-control" v-model="nuevamotorCarro">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                           <label>Marca Llantas</label>
+                                           <input type="text" class="form-control" v-model="nuevamarcallantasCarro">                              
+                                        </div>
+                                    </div> 
+                                </div>
+                               
+                                             
+                                <div class="col-md-12 mt-4">
+                                  <div class="d-flex flex-row justify-content-between">
+                                      <button type="button" @click="addCar = false" class="btn btn-secondary btn-fw mr-2"> 
+                                         <i class="mdi mdi-file-document"></i>Cancelar
+                                      </button>
+                                     <button type="button" @click="validateDateNewCar()" class="btn btn-primary btn-fw"> 
+                                         <i class="mdi mdi-file-document"></i>Guardar Datos del Vehiculo
+                                      </button>
+          
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                          
+                        
+                      </template>
+
+                        
                          
                        </form> 
                     </div>
@@ -249,15 +341,9 @@
 
                         </div>
                         <div class="d-flex flex-row justify-content-center mt-2">
-                          
                           <button type="button" @click="editDataVehicle()" class="btn btn-primary btn-fw">
                           <i class="mdi mdi-pencil"></i>Editar Datos</button>
-
-
-                        </div>
-                  
-
-                       
+                        </div>                       
                       </div>
                     </div>
                      
@@ -270,78 +356,66 @@
                          <div class="row">
                             <div class="col-md-12">
                               <h4 class="card-title">Editar datos del carro</h4>
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Marca</label>
-                                <div class="col-sm-9">
-                                <select class="form-control" @change="viewMarcas(marcaselected)" v-model="marcaselected">
-                                  <option value selected disabled>Seleccione una Marca</option>
-                                  <option v-for="(value, key) in marcas" :key="key" :value="value" >{{value}}</option>
-                                </select>
-                                </div>
-                              </div>
+
+                              
+                                
+
+                               <div class="row">
+                                  <div class="form-group col-md-6">
+                                    <label>Marca</label>
+                                      <select class="form-control" @change="viewMarcas(marcaselected)" v-model="marcaselected">
+                                        <option value selected disabled>Seleccione una Marca</option>
+                                        <option v-for="(value, key) in marcas" :key="key" :value="value" >{{value}}</option>
+                                      </select>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                     <label>Modelo</label>
+                                     <select class="form-control" @change="selectModel(modelselected)" v-model="modelselected">
+                                      <option value selected disabled>Seleccione un Modelo</option>
+                                      <option v-for="(marca, key) in modelos" :key="key">{{marca}}</option>
+                                     </select>
+                                  </div>
+                                </div> 
+                                
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="inputPlaca">Placa</label>
+                                <input type="text" class="form-control" id="inputplaca" v-model="borradorplacaCarro"> 
                             </div>
-                            <div class="col-md-12">
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Modelo</label>
-                                <div class="col-sm-9">
-                                  <select class="form-control" @change="selectModel(modelselected)" v-model="modelselected">
-                                   <option value selected disabled>Seleccione un Modelo</option>
-                                   <option v-for="(marca, key) in modelos" :key="key">{{marca}}</option>
-                                 </select>
-              
-                                </div>
-                              </div>
+                            <div class="form-group col-md-6">
+                              <label>Kilometraje</label>
+                              <input type="text" class="form-control" v-model="borradorkilometrajeCarro">
                             </div>
-                            <div class="col-md-12">
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Placa</label>
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" v-model="borradorplacaCarro">
+                        </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                         <label>Año</label>
+                                         <input type="text" class="form-control" v-model="borradoranioCarro">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                       <label>Color</label>
+                                       <input type="text" class="form-control" v-model="borradorcolorCarro">  
+                                    </div>
                                 </div>
-                              </div>
+        
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                          <label>Motor</label>
+                                          <input type="text" class="form-control" v-model="borradormotorCarro">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                       <label>Marca Llantas</label>
+                                       <input type="text" class="form-control" v-model="borradormarcallantasCarro">                              
+                                    </div>
+                                </div> 
                             </div>
-                            <div class="col-md-12">
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Kilometraje</label>
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" v-model="borradorkilometrajeCarro">
-                                </div>
-                              </div>
-                            </div>
-                             <div class="col-md-12">
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Año</label>
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" v-model="borradoranioCarro">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Color</label>
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" v-model="borradorcolorCarro">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Motor</label>
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" v-model="borradormotorCarro">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Marca Llantas</label>
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" v-model="borradormarcallantasCarro">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="d-flex flex-row justify-content-end">
+                           
+
+                        
+                                         
+                            <div class="col-md-12 mt-4">
+                              <div class="d-flex flex-row justify-content-between">
                                   <button type="button" @click="editing = false" class="btn btn-secondary btn-fw mr-2"> 
                                      <i class="mdi mdi-file-document"></i>Cancelar
                                   </button>
@@ -388,9 +462,11 @@ export default {
         clientes: [],marcas: [],modelos: [], marcaselected: '', modelselected: '', nombres: '',
         apellidos: '', cedula: '', correo: '', celular: '', idClientToEdit: '', file: '', marcaCarro: '',
         modeloCarro: '', placaCarro: '', kilometrajeCarro: '', anioCarro: '', colorCarro: '', motorCarro: '',
-        marcallantasCarro: '', borradormarcaCarro: '', borradormodeloCarro: '', borradorplacaCarro: '',
-        borradorkilometrajeCarro: '', borradoranioCarro: '', borradorcolorCarro: '', borradormotorCarro: '',
-        borradormarcallantasCarro: '', nombrePropietario: '', idClientVehicle: '', editing: false
+        marcallantasCarro: '', nuevaplacaCarro: '', nuevakilometrajeCarro: '', nuevaanioCarro: '',
+        nuevacolorCarro: '', nuevamotorCarro: '', nuevamarcallantasCarro: '', borradormarcaCarro: '',
+        borradormodeloCarro: '', borradorplacaCarro: '', borradorkilometrajeCarro: '', borradoranioCarro: '',
+        borradorcolorCarro: '', borradormotorCarro: '', borradormarcallantasCarro: '', nombrePropietario: '',
+        idClientVehicle: '', editing: false, addCar: false, addDataNewCar: false, alertInvalid: false
       }
     },
 
@@ -456,9 +532,21 @@ export default {
            this.idClientToEdit ='';
        },
 
+         cleanDataVehicle(){
+           this.nuevaplacaCarro ='';
+           this.nuevakilometrajeCarro='';
+           this.nuevaanioCarro ='';
+           this.nuevacolorCarro ='';
+           this.nuevamotorCarro ='';
+           this.nuevamarcallantasCarro ='';
+           this.modelselected = '';
+           this.marcaselected = '';
+       },
+
        addClient(){
 
-           axios.post(`${constants.URL_CLIENTES}`, {
+  
+             axios.post(`${constants.URL_CLIENTES}`, {
 
               nombre: this.nombres,
               apellidos: this.apellidos,
@@ -468,15 +556,29 @@ export default {
 
             })
             .then(res => {
-              console.log(res.data)
+              
+              axios.post(`${constants.URL_VEHICULOS}`, {
+                    idUser: res.data.clientArchived,
+                    marca: this.marcaselected, 
+                    modelo: this.modelselected, 
+                    placa: this.nuevaplacaCarro, 
+                    kilometraje: this.nuevakilometrajeCarro, 
+                    anio: this.nuevaanioCarro, 
+                    color: this.nuevacolorCarro, 
+                    motor: this.nuevamotorCarro, 
+                    marcallantas: this.nuevamarcallantasCarro
+              });
+              
+              
               Swal.fire('Cliente Agregado','Se realizó la inserción con éxito ','success')
               this.cleanData();
-              this.getClients();      
+              this.cleanDataVehicle();
+              this.getClients();  
               $('#modalClienteNuevo').modal('hide')
             })
             .catch(function(){
                 console.log('Ocurrio un error al procesar el archivo');
-             });
+             }); 
         },
         deleteClient(idClient){
           Swal.fire({
@@ -574,6 +676,23 @@ export default {
                 );
           $('#modalVehiculos').modal('hide')
           this.editing = false;
+        },
+
+        validateDateNewCar(){
+
+          if(this.modelselected === '' || this.marcaselected === '' || this.nuevaplacaCarro === ''){
+
+              this.alertInvalid = true;
+            
+          }else{
+
+            this.addDataNewCar = true; 
+            this.addCar= false;
+            this.alertInvalid = false;
+            
+          }
+
+          
         }
     }
 }
