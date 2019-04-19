@@ -33,7 +33,7 @@
 
                         <tr v-for="client in clientes" :key="client.id">
                           <td class="py-1">
-                            <img src="../assets/img/faces/icono-mecanico.jpg" alt="image" />
+                            <img src="../assets/img/faces/propietario.jpg" alt="image" />
                           </td>
                           <td>
                             {{ client.nombre }} {{client.apellidos}}
@@ -54,7 +54,7 @@
                             <button type="button" class="btn btn-icons btn-rounded btn-success" data-toggle="modal" id="editar" data-target="#modalClient" @click="getClient(client._id)">
                               <i class="mdi mdi-pencil"></i>
                             </button>
-                            <button type="button" class="btn btn-icons btn-rounded btn-danger" id="borrar" @click="deleteClient(client._id)">
+                            <button type="button" class="btn btn-icons btn-rounded btn-danger" id="borrar" @click="deleteClient(client._id, client.id)">
                              <i class="mdi mdi-delete"></i>
                             </button>
                           
@@ -580,10 +580,10 @@ export default {
                 console.log('Ocurrio un error al procesar el archivo');
              }); 
         },
-        deleteClient(idClient){
+        deleteClient(idClient, idVehicle){
           Swal.fire({
               title: 'Está seguro de hacer la eliminación',
-              text: "Recuerde que no podrá recuperar el contenido del mecánico",
+              text: "Recuerde que no podrá recuperar el contenido del Cliente",
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -596,6 +596,7 @@ export default {
                 .then(res => {
                   this.getClients()
                   console.log(res.data)
+                  axios.delete(`${constants.URL_VEHICULOS}/${idVehicle}`)
                 })
                 Swal.fire(
                   'Datos del Cliente Eliminados',

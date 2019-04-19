@@ -28,23 +28,30 @@
             </a> -->
           </li>
           <li class="nav-item">
+            <router-link :to="{ name: 'clientes'}" class="nav-link">
+                <i class="menu-icon mdi mdi-account-star"></i>
+                <span class="menu-title">Clientes</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
             <router-link :to="{ name: 'mecanicos'}" class="nav-link">
                 <i class="menu-icon mdi mdi-account-multiple"></i>
                 <span class="menu-title">Mecánicos</span>
             </router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="menu-icon mdi mdi-settings"></i>
-              <span class="menu-title">Servicios</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{ name: 'clientes'}" class="nav-link">
-                <i class="menu-icon mdi mdi-account-star"></i>
-                <span class="menu-title">Clientes</span>
+            <router-link :to="{ name: 'servicios'}" class="nav-link">
+                <i class="menu-icon mdi mdi-settings"></i>
+                <span class="menu-title">Servicios</span>
             </router-link>
-          </li>  
+          </li>
+           <li class="nav-item">
+            <router-link :to="{ name: 'productos'}" class="nav-link">
+                <i class="menu-icon mdi mdi-buffer"></i>
+                <span class="menu-title">Productos</span>
+            </router-link>
+          </li>
+        
         </ul>
       </nav>
   </div>

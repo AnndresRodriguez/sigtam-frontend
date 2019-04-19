@@ -8,6 +8,8 @@ import Main from "./components/mainPanelAdmin.vue";
 import Container from "./components/DashboardAdmin.vue";
 import Mecanicos from "./components/mechanics.vue";
 import Clientes from "./components/clientes.vue";
+import Servicios from "./components/services.vue";
+import Productos from "./components/products.vue";
 
 Vue.use(Router);
 
@@ -53,6 +55,16 @@ export default new Router({
               path: "/clientes",
               name: "clientes",
               component: Clientes
+            },
+            {
+              path: "/servicios",
+              name: "servicios",
+              component: Servicios
+            },
+            {
+              path: "/productos",
+              name: "productos",
+              component: Productos
             }
           ]
         }
