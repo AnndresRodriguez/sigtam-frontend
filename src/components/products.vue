@@ -36,6 +36,8 @@
                         <p class="text-dark mb-0">Precio Compra </p>
                         <h6 class="font-weight-medium text-primar mb-0">12000</h6>    
                     </div>
+
+                    
                     
                     
                   

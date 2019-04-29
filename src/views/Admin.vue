@@ -15,11 +15,11 @@
                       <h5 class="mt-2">Administrador</h5>
                   </div>                 
               </div>
-              <form action="#">
+          
                 <div class="form-group">
                   <label class="label">Correo Electrónico</label>
                   <div class="input-group">
-                    <input type="email" class="form-control form-control-lg" v-model="userEmail" placeholder="micorreo@correo.com">
+                    <input type="email" class="form-control form-control-lg" :class="validarCorreo" v-model="userEmail" placeholder="micorreo@correo.com">
                   </div>
                 </div>
                 <div class="form-group">
@@ -30,14 +30,14 @@
                 </div>
                 <div class="form-group mb-4">
                    <!-- <a href="http://gidis.ufps.edu.co/tallerapp/index.html" class="btn btn-primary submit-btn btn-block">Iniciar Sesión</a> -->
-                  <button class="btn btn-primary submit-btn btn-block" @click="initSession()">Iniciar Sesión</button>
+                  <button class="btn btn-primary btn btn-block" @click="initSession()">Iniciar Sesión</button>
                 </div>
                     <ul class="auth-footer">
                       <li>
                         <a href="#">¿Olvidó su contraseña?</a>
                       </li>
                       <li>
-                        <a href="#">Regresar al Inicio</a>
+                        <router-link :to="{name: 'index'}">Regresar al Inicio</router-link>
                       </li>
                     </ul>
                     <!-- <p class="footer-text text-center">UFPS © Ingeniería de Software</p> -->
@@ -50,7 +50,7 @@
                   <span class="text-small font-weight-semibold">Not a member ?</span>
                   <a href="#" class="text-black text-small">Create new account</a>
                 </div> -->
-              </form>
+        
             </div>
         
           </div>
@@ -65,6 +65,9 @@
 
 <script>
 import axios from "axios"
+import firebase from "firebase";
+import constants from "../config/constants.js"
+import util from '../util/utilities.js'
 export default {
   data() {
     return {
@@ -72,12 +75,30 @@ export default {
        userPass: ''
     }
   },
+  computed: {
+    validarCorreo(){
+        if (util.emailRegex.test(this.userEmail)) {
+            return " is-valid";
+            } else {
+             return " is-invalid";
+            }
+    }
+  },
   methods:{
     initSession(){
 
+      
+
+      firebase.auth().signInWithEmailAndPassword(this.userEmail, this.userPass)
+        .then(user => {
+            this.$router.replace('dashboardAdmin');
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+  
     }
   }
-
 }
 </script>
 

@@ -46,17 +46,12 @@
                   </div>
                 </div>
               </a>
+ 
               <a class="dropdown-item mt-2">
-                Manage Accounts
+                Cambiar Contraseña
               </a>
-              <a class="dropdown-item">
-                Change Password
-              </a>
-              <a class="dropdown-item">
-                Check Inbox
-              </a>
-              <a class="dropdown-item">
-                Sign Out
+              <a class="dropdown-item" href="#" @click="logout()">
+                Salir
               </a>
             </div>
           </li>
@@ -72,7 +67,22 @@
 </template>
 
 <script>
+
+import firebase from "firebase";
 export default {
+
+  methods:{
+    logout(){
+      firebase.auth().signOut()
+      .then(res => {
+        console.log(res)
+        this.$router.replace("admin")
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
+  }
 
 }
 </script>

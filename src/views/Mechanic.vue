@@ -38,7 +38,7 @@
                         <a href="#">¿Olvidó su contraseña?</a>
                       </li>
                       <li>
-                        <a href="#">Regresar al Inicio</a>
+                        <router-link :to="{name: 'index'}">Regresar al Inicio</router-link>
                       </li>
                     </ul>
                     <!-- <p class="footer-text text-center">UFPS © Ingeniería de Software</p> -->
@@ -67,6 +67,7 @@
 <script>
 
 import axios from "axios";
+import firebase from "firebase";
 export default {
 
   data() {
@@ -77,28 +78,14 @@ export default {
   },
   methods:{
       initSession() {
-        axios.post("http://localhost:3000/auth/login", {
-          email: this.userEmail,
-          pass: this.userPass
+        firebase.auth().signInWithEmailAndPassword(this.userEmail, this.userPass)
+        then(user => {
+          this.$router.replace('home');
         })
-       .then(res => { 
-          // localStorage.setItem('token', res.data.token);
-          let peticion = axios.create({
-            headers: {'authorization': `Bearer ${res.data.token}` }
-          })
-          peticion.post('http://localhost:3000/auth/api/protected', {
-            user: res.data.user
-          })
-          .then(res => {
-            if(res.data.status === 'loggedin'){
-              console.log(res.data.user);
-              this.$router.push({name: 'about'});
-            }
-          })
-          .catch(err => {
-            console.log(err);
-          })
-       })  
+        .catch((error) => {
+          console.error(error);
+});
+
     }
   }
 
