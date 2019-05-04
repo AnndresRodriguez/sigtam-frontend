@@ -33,7 +33,7 @@
 
                         <tr v-for="client in clientes" :key="client.id">
                           <td class="py-1">
-                            <img src="../assets/img/faces/propietario.jpg" alt="image" />
+                            <img src="../../assets/img/faces/propietario.jpg" alt="image" />
                           </td>
                           <td>
                             {{ client.nombre }} {{client.apellidos}}
@@ -317,7 +317,7 @@
                     <div class="card-body">
                       <template v-if="!editing">
                     <div class="d-flex flex-row justify-content-center">
-                      <img src="../assets/img/faces/icono-auto-2.jpg" alt="auto" class="img-responsive">
+                      <img src="../../assets/img/faces/icono-auto-2.jpg" alt="auto" class="img-responsive">
                     </div>
                     <div class="row ticket-card mt-3 border-bottom mb-3">
                       <div class="ticket-details col-md-12">

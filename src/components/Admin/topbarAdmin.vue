@@ -7,7 +7,7 @@
           <h3 class="mt-3" style="color:black">SIGTAM</h3>
         </a>
         <a class="navbar-brand brand-logo-mini" href="index.html">
-          <img src="../assets/img/logo-mini.svg" alt="logo" />
+          <img src="../../assets/img/logo-mini.svg" alt="logo" />
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -30,7 +30,7 @@
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hola, Karen</span>
-              <img class="img-xs rounded-circle" src="../assets/img/faces/karen.jpg" alt="Profile image">
+              <img class="img-xs rounded-circle" src="../../assets/img/faces/karen.jpg" alt="Profile image">
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <a class="dropdown-item p-0">

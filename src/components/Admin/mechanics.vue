@@ -38,7 +38,7 @@
 
                         <tr v-for="mechanic in mechanics" :key="mechanic.id">
                           <td class="py-1">
-                            <img src="../assets/img/faces/icono-mecanico.jpg" alt="image" />
+                            <img src="../../assets/img/faces/icono-mecanico.jpg" alt="image" />
                           </td>
                           <td>
                             {{ mechanic.nombre }} {{mechanic.apellidos}}
@@ -277,7 +277,7 @@ export default {
           formData.append('file', this.file);
           axios.post(`${constants.URL_MECANICOS}/upload`, formData, { headers: {'Content-Type': 'multipart/form-data'}})
           .then(res => {
-              console.log(res.data)
+              // console.log(res.data)
            })
           .catch(function(){
                 console.log('Ocurrio un error al procesar el archivo');
@@ -319,12 +319,16 @@ export default {
             }).then((result) => {
               if (result.value) {
                 axios.delete(`${constants.URL_MECANICOS}/${idMechanic}`)
+                .then(res => {
+                    this.getMechanics()
+                })
                 Swal.fire(
                   'Datos del Mecánico Eliminados',
                   'El registro ha sido eliminado de la base de datos',
                   'success'
                 );
-                this.getMechanics()
+
+                
               }
             })
         }

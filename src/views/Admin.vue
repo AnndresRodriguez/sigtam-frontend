@@ -7,7 +7,7 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
               <div class="form-group mb-4" style="text-align: center">
-                <h2>Mecanicapp</h2>
+                <h2>SIGTAM</h2>
               </div>
               <div class="form-group">
                   <div class="d-flex flex-column justify-content-between align-items-center">

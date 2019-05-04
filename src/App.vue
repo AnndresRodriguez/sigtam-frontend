@@ -18,6 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import '@/assets/css/base.css';
 import '@/assets/css/login.css';
 import '@/assets/css/dashboard.css';
+import '@/assets/css/spiners.css';
 
 export default {
 

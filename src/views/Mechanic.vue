@@ -7,7 +7,7 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
               <div class="form-group mb-4" style="text-align: center">
-                <h2>Mecanicapp</h2>
+                <h2>SIGTAM</h2>
               </div>
               <div class="form-group">
                   <div class="d-flex flex-column justify-content-between align-items-center">
@@ -16,7 +16,6 @@
                   </div>
               
               </div>
-              <form @submit.prevent="initSession()">
                 <div class="form-group">
                   <label class="label">Correo Electrónico</label>
                   <div class="input-group">
@@ -30,8 +29,7 @@
                   </div>
                 </div>
                 <div class="form-group mb-4">
-                  <!-- <button class="btn btn-primary submit-btn btn-block">Iniciar Sesión</button> -->
-                  <a href="http://localhost/Mecanicapp-Mecanico/" class="btn btn-primary submit-btn btn-block">Iniciar Sesión</a>
+                   <button class="btn btn-primary btn btn-block" @click="initSession()">Iniciar Sesión</button>
                 </div>
                     <ul class="auth-footer">
                       <li>
@@ -41,17 +39,6 @@
                         <router-link :to="{name: 'index'}">Regresar al Inicio</router-link>
                       </li>
                     </ul>
-                    <!-- <p class="footer-text text-center">UFPS © Ingeniería de Software</p> -->
-               
-                <!-- <div class="form-group">
-                  <button class="btn btn-block g-login">
-                    <img class="mr-3" src="../assets/svg/google.svg" alt="">Log in with Google</button>
-                </div> -->
-                <!-- <div class="text-block text-center my-3">
-                  <span class="text-small font-weight-semibold">Not a member ?</span>
-                  <a href="#" class="text-black text-small">Create new account</a>
-                </div> -->
-              </form>
             </div>
         
           </div>
@@ -79,8 +66,8 @@ export default {
   methods:{
       initSession() {
         firebase.auth().signInWithEmailAndPassword(this.userEmail, this.userPass)
-        then(user => {
-          this.$router.replace('home');
+        .then(user => {
+          this.$router.replace('dashboardMecanico');
         })
         .catch((error) => {
           console.error(error);

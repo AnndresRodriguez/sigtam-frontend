@@ -1,88 +1,5 @@
 <template>
         <div>
-          <!-- <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-car-wash text-danger icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Carros en Reparación</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">12</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> <a href="#">Ver Carros</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-car text-success icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Carros Reparados</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">7</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> <a href="#">Ver Carros Reparados</a> 
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-currency-usd text-success icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Productos Vendidos</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">16</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> <a href="#">Ver ventas Realizadas</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-account-clock text-info icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Petición de Citas</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">33</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> <a href="#">Ver Citas</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
              <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
@@ -91,7 +8,7 @@
                   <div class="fluid-container">
                     <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                       <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../assets/img/faces/icono-mecanico.jpg" alt="profile image">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/icono-mecanico.jpg" alt="profile image">
                       </div>
                       <div class="ticket-details col-md-9">
                         <div class="d-flex">
@@ -135,7 +52,7 @@
                     </div>
                     <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                       <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../assets/img/faces/icono-mecanico.jpg" alt="profile image">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/icono-mecanico.jpg" alt="profile image">
                       </div>
                       <div class="ticket-details col-md-9">
                         <div class="d-flex">
@@ -179,7 +96,7 @@
                     </div>
                      <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                       <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../assets/img/faces/icono-mecanico.jpg" alt="profile image">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/icono-mecanico.jpg" alt="profile image">
                       </div>
                       <div class="ticket-details col-md-9">
                         <div class="d-flex">

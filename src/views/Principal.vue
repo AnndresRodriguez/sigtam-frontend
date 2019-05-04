@@ -7,7 +7,7 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
               <div class="form-group mb-4" style="text-align: center">
-                <h2>Bienvenido a Mecanicapp</h2>
+                <h2>Bienvenido a SIGTAM</h2>
                 <h4>Iniciar Sesion como</h4>
               </div>
               <div class="form-group d-flex flex-row justify-content-between">
