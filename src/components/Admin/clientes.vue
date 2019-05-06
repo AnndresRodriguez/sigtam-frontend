@@ -126,7 +126,7 @@
       <!-- Fin Modal Editar Cliente -->
 
      <!-- Modal Añadir cliente -->
-  <div class="modal fade" id="modalClienteNuevo" tabindex="-1" role="dialog" aria-labelledby="modalClientNuevo" aria-hidden="true">
+<div class="modal fade" id="modalClienteNuevo" tabindex="-1" role="dialog" aria-labelledby="modalClientNuevo" aria-hidden="true">
   <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -315,7 +315,7 @@
              <div class="col-12">
                   <div class="card">
                     <div class="card-body">
-                      <template v-if="!editing">
+                <template v-if="!editing">
                     <div class="d-flex flex-row justify-content-center">
                       <img src="../../assets/img/faces/icono-auto-2.jpg" alt="auto" class="img-responsive">
                     </div>
@@ -547,7 +547,6 @@ export default {
 
   
              axios.post(`${constants.URL_CLIENTES}`, {
-
               nombre: this.nombres,
               apellidos: this.apellidos,
               cedula:this.cedula,

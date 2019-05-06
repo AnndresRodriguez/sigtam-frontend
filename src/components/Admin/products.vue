@@ -10,12 +10,32 @@
                           <h5 class="mb-0">Seleccionar Categoría</h5>
                           <div class="ml-5">
                             <select class="form-control" style="width: 200px" @change="loadProducts(categoria)" v-model="categoria">
-                              <option v-for="product in nombresMarcas" :key="product.nombre"  :value="product.id">{{ product.nombre }}</option>
+                              <option v-for="product in getMarcas()" :key="product.nombre"  :value="product.id">{{ product.nombre }}</option>
                             </select>
                           </div>
                   </div>
 
-                  <template v-if="productos==null">
+                  <div>
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAniadirProducto">
+                    <i class="mdi mdi-account-plus"></i>Nuevo Producto</button>
+
+                    <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="" >
+                    <i class="mdi mdi-account-plus"></i>Nueva Categoría</button>
+
+                  </div>
+
+                  
+                  
+                </div>
+    
+                </div>
+              </div>
+
+
+              <ModalAniadir></ModalAniadir>
+          
+              <template v-if="getProductos()==null">
                     <div class="spinner">
                               <div class="rect1 mr-1"></div>
                               <div class="rect2 mr-1"></div>
@@ -25,18 +45,9 @@
                     </div>
                  </template>
 
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="" >
-                  <i class="mdi mdi-account-plus"></i>Añadir Nuevo Producto</button>
-                </div>
-    
-                </div>
-              </div>
-
-          
-
           <div class="row mt-4">
              
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card" v-for="product in productos" :key="product._id" :value="product">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card" v-for="product in getProductos()" :key="product._id" :value="product">
               <div class="card card-statistics">
               
               
@@ -75,93 +86,9 @@
                         <p class="text-dark mb-0">Precio Compra </p>
                         <h6 class="font-weight-medium text-primar mb-0">${{product.precioCompra}}</h6>    
                     </div>                 
-                </div>
-              
-
-              
-      
+                </div>      
               </div>
             </div>
-            <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-receipt text-warning icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Orders</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">3455</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-poll-box text-success icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Sales</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">5693</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-poll-box text-info icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Employees</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">246</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
-                <div class="card-body">
-                  <div class="clearfix">
-                    <div class="float-left">
-                      <i class="mdi mdi-poll-box text-info icon-lg"></i>
-                    </div>
-                    <div class="float-right">
-                      <p class="mb-0 text-right">Employees</p>
-                      <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">246</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
-                  </p>
-                </div>
-              </div>
-            </div> -->
           </div>
 
           
@@ -173,25 +100,36 @@
 import axios from "axios";
 import constants from "../../config/constants.js";
 import util from "../../util/utilities.js";
+import ModalAniadir from "./Modals/AniadirProducto.vue"
 export default {
 
+    components:{
+      ModalAniadir,
+    },
+
     mounted() {
-      this.getNombresMarcas();
+      this.$store.dispatch("getAllCategoriesProducts")
       this.initProducts();
     },
 
     data(){
       return{
         nombresMarcas: [],
-        productos: null,
         categoria: 1,
         nombreProducto: '',
         cantidadProducto: 0
       }
     },
 
-
     methods: {
+         getMarcas(){
+           return this.$store.getters.getMarcas;
+         },
+
+         getProductos(){
+          return this.$store.getters.getProductos;
+         },
+
         getNombresMarcas(){
           axios.post(`${constants.URL_PRODUCTOS}/all`)
           .then(res => {
@@ -199,21 +137,13 @@ export default {
           })
           .catch(err => { console.log(err)})
        },
-         loadProducts(indiceCategoria){
-           this.productos = null
-           axios.post(`${constants.URL_PRODUCTOS}/all/${indiceCategoria}`)
-            .then(res => {
-               this.productos = res.data[0].productos;
-
-            })
-            .catch(err => console.log(err))
+        loadProducts(indiceCategoria){
+           this.$store.state.productos = null;
+           this.$store.dispatch('getAllProducts', { id: indiceCategoria })
        },
        initProducts(){
-         axios.post(`${constants.URL_PRODUCTOS}/all/1`)
-          .then(res => {
-           this.productos = res.data[0].productos;
-          })
-          .catch(err => console.log(err))
+           this.$store.dispatch('getAllProducts', { id: 1 })
+
       },
        iconoProducto(){
          return util.asignProductIcon(this.categoria);  
