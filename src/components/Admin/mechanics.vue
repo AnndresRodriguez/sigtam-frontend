@@ -316,7 +316,7 @@ export default {
               cancelButtonColor: '#d33',
               confirmButtonText: 'Eliminar',
               cancelButtonText: 'Cancelar'
-            }).then((result) => {
+            }).then( result => {
               if (result.value) {
                 axios.delete(`${constants.URL_MECANICOS}/${idMechanic}`)
                 .then(res => {
@@ -326,9 +326,7 @@ export default {
                   'Datos del Mecánico Eliminados',
                   'El registro ha sido eliminado de la base de datos',
                   'success'
-                );
-
-                
+                ); 
               }
             })
         }

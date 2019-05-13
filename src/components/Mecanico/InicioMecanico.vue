@@ -1,163 +1,416 @@
 <template>
-    <div>
-        <div class="row">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title mb-4">Diagnostico de Motor</h5>
-                  <div class="fluid-container">
-                    <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
-                      <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/carro.png" alt="profile image">
-                      </div>
-                      <div class="ticket-details col-md-9">
-                        <div class="d-flex">
-                          <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">Automóvil Chevrolet Corsa</p>
-                          <p class="text-primary mr-1 mb-0">[API-234]</p>
-                          <p class="mb-0 ellipsis">Análisis Completo de Motor</p>
-                        </div>
-                        <p class="text-gray ellipsis mb-2">Propietaria - Cliente: Angélica Bermudez
-                        </p>
-                        <p class="text-gray ellipsis mb-2">Cúcuta Colombia
-                        </p>
-                        <div class="row text-gray d-md-flex d-none">
-                          <div class="col-4 d-flex">
-                            <small class="mb-0 mr-2 text-muted text-muted">Hora de Diagnostico :</small>
-                            <small class="Last-responded mr-2 mb-0 text-muted text-muted">4:27 p.m.</small>
-                          </div>
-                          <div class="col-4 d-flex">
-                            <small class="mb-0 mr-2 text-muted text-muted">Fecha de Reparación :</small>
-                            <small class="Last-responded mr-2 mb-0 text-muted text-muted">27/03/2019</small>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="ticket-actions col-md-2">
-                       <button type="button" class="btn btn-primary btn-sm" @click="crearFallos()">Iniciar Diagnostico</button>
-                      </div>
-                        <template v-if="viewSpinner">
-                          <div class="spinner">
-                              <div class="rect1"></div>
-                              <div class="rect2"></div>
-                              <div class="rect3"></div>
-                              <div class="rect4"></div>
-                              <div class="rect5"></div>
-                            </div>
-                        </template>
-                    </div>      
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+ <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+          <h3>Crear Servicio</h3>
+          <button type="button" class="btn btn-primary btn-fw" data-toggle="modal" data-target="#modalMecanicoNuevo">
+          <i class="mdi mdi-account-plus"></i>Crear Servicio</button>
+        </div>
 
-          <template v-if="fallos.length != 0">
-            <div class="row">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title mb-4">Fallos Encontrados</h5>
-                  <div class="fluid-container">
-                     <template>
-                      <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3" v-for="falla in fallos" :key="falla">
-                      <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/icono-advertencia.png" alt="profile image">
-                      </div>
-                      <div class="ticket-details col-md-9" >
-                        <div class="d-flex">
-                          <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">{{falla.nombre}}</p>
-                          <p class="text-primary mr-1 mb-0">[{{falla.causa}}]</p>
-                        </div>
-                        <p class="text-gray ellipsis mb-2">Problema
-                        </p>
-                        <p class="text-gray ellipsis mb-2">{{falla.descripcion}}
-                        </p>
-                      </div>
-                      <div class="ticket-actions col-md-2">
-                       
-                      </div>
-                    </div>
-                     </template>
+          <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-6 col-form-label">Seleccione el Tipo de Servicio</label>
+                  <div class="col-sm-6">
+                     <select class="form-control" @change="getType(idTipo)" v-model="idTipo">
+                       <option value="" selected disabled>Seleccione un tipo</option> 
+                       <option v-for="tipo in tiposServicios" :key="tipo.nombre"  :value="tipo.id">{{ tipo.nombre }}</option>
+                     </select>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-6 col-form-label">Seleccione una parte del Automóvil</label>
+                  <div class="col-sm-6">
+                    <select class="form-control" @change="getPartCart(idPart)" v-model="idPart">
+                      <option value="0" selected disabled>Seleccione una Parte</option> 
+                      <option value="1">Carrocería</option> 
+                      <option value="2">Chasis</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             
-          </template>
+            </div>
+        <!-- <div class="d-flex flex-row mt-4 align-items-center">
+          <h6 class="mb-0 text-center">Seleccione el Tipo de Servicio</h6>
+            <div class="ml-5">
+              <select class="form-control" style="width: 220px" @change="getType(idTipo)" v-model="idTipo">
+                <option value="" selected disabled>Seleccione un tipo</option> 
+                <option v-for="tipo in tiposServicios" :key="tipo.nombre"  :value="tipo.id">{{ tipo.nombre }}</option>
+              </select>
+            </div>
 
+           <h6 class="mb-0 text-center ml-5">Seleccione la Parte del Auto</h6>
+           <select class="form-control ml-4" style="width: 220px" @change="getPartCart(idPart)" v-model="idPart">
+                <option value="0" selected disabled>Seleccione una Parte</option> 
+                <option value="1">Carrocería</option> 
+                <option value="2">Chasis</option>
+           </select>
+        </div> -->
+        
+          <template v-if="idPart==1">
+
+          <p class="mt-3">Seleccione la Parte de la Carrocería a Reparar</p>
+          <div class="row">
+           <div class="table-responsive col-md-6" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
+           <table class="table table-hover">
+             <thead>
+               <tr>
+                 <th class="table-primary">Parte de la Carrocería</th>
+                 <th class="table-primary">Acción</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr v-for="nombre in nombresPartes" :key="nombre.id" :value="nombre.nombre">
+                 <td>{{nombre.nombre}}</td>
+                 <td>
+                   <button class="btn btn-primary btn-sm" @click="aniadirServicio(nombre.nombre)">Añadir</button>
+                 </td>
+               </tr>
+             </tbody>
+           </table>
+         </div>    
+        </div>
           
+          </template>
+          
+          <template v-else-if="idPart==2">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-6 col-form-label">Seleccione el sistema del Chasis</label>
+                  <div class="col-sm-6">
+                    <select class="form-control" @change="getDataSystem(idSystemSelected)" v-model="idSystemSelected">
+                     <option value="" selected disabled>Seleccione una Sistema</option> 
+                     <option v-for="system in nombresSistemas" :key="system.nombreSistema" :value="system.idSystem">{{ system.nombreSistema }}</option>
+                   </select>
+                  </div>  
+                </div>
+              </div>
+
+             <div class="col-md-6">
+
+               <template v-if="verSubsistemas">
+             
+                <div class="form-group row">
+                  <label class="col-sm-6 col-form-label">Seleccione el Subsistema</label>
+                  <div class="col-sm-6">
+                    <select class="form-control" @change="getDataSubSystem(idSubSystemSelected)" v-model="idSubSystemSelected">
+                     <option value="" selected disabled>Seleccione un Subsistema</option> 
+                     <option v-for="system in sistemas" :key="system.nombre" :value="system.id">{{ system.nombre }}</option>
+                   </select>
+                  </div>  
+                </div>
+             
+              </template>
+
+             
+
+             </div>
+              
+              
+              
+            </div>
+
+              <div class="row">
+
+                <div class="col-md-6">
+
+                   <div class="d-flex flex-row justify-content-between align-items-center">
+                <template v-if="sistemas.length != 0">
+                  <button class="btn btn-primary" @click="verSubsistemas = true">Cargar Subsistemas</button>
+                </template>
+
+                <template v-if="partes.length != 0">
+                  <button class="btn btn-success" @click="verPartes = true">Cargar Partes</button>
+                </template>
+
+                 <template v-if="componentes.length != 0">
+                  <button class="btn btn-info" @click="verComponentes = true">Cargar Componentes</button>
+                </template>
+              </div>
+
+                </div>
+               
+
+              
+
+            
+<!-- 
+               <template v-if="subsistema.length != 0">
+                <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
+                  <p class="mt-3">Añada el Componente del Subsistema</p>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th class="table-primary">Componentes del Subsistema</th>
+                        <th class="table-primary">Acción</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="sub in subsistema" :key="sub.id">
+                        <td>{{sub}}</td>
+                        <td>
+                          <button class="btn btn-primary btn-sm" @click="aniadirSubsistema(sub)">Añadir</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>      
+              </template>
+
+              <div class="col-md-2"></div>
+
+              <template v-if="partes.length != 0">
+                    <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
+                    <p class="mt-3">Añada las partes del Sistema</p>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th class="table-primary">Componentes del Subsistema</th>
+                          <th class="table-primary">Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="parte in partes" :key="parte">
+                          <td>{{parte}}</td>
+                          <td>
+                            <button class="btn btn-primary btn-sm" @click="aniadirParte(parte)">Añadir</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>   
+              </template>  -->
+
+
+              </div>
+
+              <div class="row mt-5">
+
+               <template v-if="subsistema.length != 0">
+                <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
+                  <p class="mt-3">Añada el Componente del Subsistema</p>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th class="table-primary">Componentes del Subsistema</th>
+                        <th class="table-primary">Acción</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="sub in subsistema" :key="sub.id">
+                        <td>{{sub}}</td>
+                        <td>
+                          <button class="btn btn-primary btn-sm" @click="aniadirSubsistema(sub)">Añadir</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>      
+              </template>
+
+              <template v-if="verSubsistemas">
+                  <div class="col-md-2"></div>
+              </template>
+
+              <template v-if="verPartes">
+                    <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
+                    <p class="mt-3">Añada las partes del Sistema</p>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th class="table-success">Partes del Sistema</th>
+                          <th class="table-success">Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="parte in partes" :key="parte">
+                          <td>{{parte}}</td>
+                          <td>
+                            <button class="btn btn-success btn-sm" @click="aniadirParte(parte)">Añadir</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>   
+              </template>
+
+              <template v-if="verComponentes">
+                    <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
+                    <p class="mt-3">Añada los Componentes del Sistema</p>
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th class="table-info">Componentes del Subsistema</th>
+                          <th class="table-info">Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="componente in componentes" :key="componente">
+                          <td>{{componente}}</td>
+                          <td>
+                            <button class="btn btn-info btn-sm" @click="aniadirComponente(componente)">Añadir</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>   
+              </template>
+                
+
+              </div>
+    
+              
+                 
+          </template> 
+       
+       
+        
+
+         
+        <template>
+          <pre>{{$data}}</pre>
+        </template>
+      </div>
     </div>
+  </div>  
 </template>
 
 <script>
-import Swal from "sweetalert2"
+import axios from "axios"
+import constants from "../../config/constants.js"
 export default {
+  mounted(){
+    this.getAllTypesServices();
+    this.getDataChasis();
+    this.getDataCarrocerias();
+  },
+  data(){
+    return{
+      partes: [],
+      sistemas: [],
+      subsistema: [],
+      componentes: [],
+      checkbox: '',
+      tiposServicios: [],
+      datosCarroceria: [],
+      datosChasis: [],
+      nombresSistemas: [],
+      nombresPartes: [],
+      idTipo: '',
+      idPart: 0,
+      idPartSelected: '',
+      idSystemSelected: '', 
+      idSubSystemSelected: '',
+      verPartes: false,
+      verComponentes: false,
+      verSubsistemas: false,
+      
 
-    data(){
-        return {
-            viewSpinner: false,
-            fallos: []
-        }
-    },
-    methods:{
-    
-        crearFallos(){
-
-          this.viewSpinner = true;
-
-          setTimeout(() => {
-
-              this.fallos.push(
-            {
-          nombre: 'Bujía Mojada',
-          causa: 'Bujía con restos de Combustible',
-          descripcion: 'Dificultad en el arranque, marcha lenta irregular o falla en el motor.'
-          })
-
-          }, 3000);
-
-          setTimeout(() => {this.fallos.push(
-        {
-          nombre: 'Termostato',
-          causa: 'Posible Fuga',
-          descripcion: 'El motor no alcanza la temperatura esperada después de encendido el auto.'
-        })
-
-          }, 7000);
-
-            setTimeout(() => {this.fallos.push(
-        {
-          nombre: 'Cilindros',
-          causa: 'Falla en uno de los Cilindros',
-          descripcion: 'El Proceso de Combustión no es normal, puede crear problemas al encender el auto'
-        })
-
-          }, 11000);
-
-           setTimeout(() => {this.fallos.push(
-        {
-          nombre: 'Aislador Cerámico',
-          causa: 'Dañado o Ausente',
-          descripcion: 'Motor falla en la aceleración o en baja revolución con cargas elevadas'
-        })
-
-          }, 15000);
-
-           setTimeout(() => {
-            Swal.fire({
-              type: 'success',
-              title: 'Análisis Completado',
-              text: '4 problemas encontrados'
-            });
-            this.viewSpinner=false;
-          }, 17000);
-
-
-           
-          
-        }
     }
+  },
+  methods:{
+    getAllTypesServices(){
+      axios.get(`${constants.URL_SERVICIOS}`)
+      .then(res => {
+        this.tiposServicios = res.data;
+      })
+    },
+    getType(tipo){
+      console.log('id tipo', tipo)
+    },
+    getPartCart(parte){
+      console.log('id parte', parte)
+    },
+
+    aniadirServicio(nombre){
+      alert(nombre);
+    },
+
+    getDataCarrocerias(){
+      axios.get(`${constants.URL_CARROCERIA}`)
+      .then(res => {
+        this.datosCarroceria = res.data;
+        this.datosCarroceria.forEach(dato => {
+          this.nombresPartes.push({id: dato.id, nombre: dato.nombre})
+        })
+      })
+    },
+    getDataChasis(){
+      axios.get(`${constants.URL_CHASIS}`)
+      .then(res => {
+        this.datosChasis = res.data
+        this.datosChasis.forEach( dato => {
+          this.nombresSistemas.push({idSystem: dato.id, nombreSistema: dato.nombre})
+        })
+      })
+    },
+
+    getDataPart(idDatapart){
+      console.log('id parte', idDatapart)
+
+    },
+
+    getDataSubSystem(idSubSystem){
+      
+      this.sistemas.forEach( system => {
+        if(system.id === idSubSystem){
+          this.subsistema = system.componentes;
+        }
+      })
+
+    },
+
+    aniadirSubsistema(nombresubsistema){
+      console.log(nombresubsistema)
+    },
+
+    aniadirParte(parte){
+      console.log(parte)
+    },
+
+    aniadirComponente(componente){
+      console.log(componente)
+    },
+    getDataSystem(idSystem){
+      this.componentes = [];
+      this.sistemas = [];
+      this.partes = [];
+      this.subsistema = [];
+      this.verPartes = false;
+      this.verComponentes = false;
+      this.verSubsistemas = false;
+      this.datosChasis.forEach(system => {
+        
+        if(system.id === idSystem){
+           if(system.datos != undefined){
+               system.datos.forEach(data => {
+                 if(data.partes != undefined){
+                   this.partes = data.partes
+                 }
+
+                 if(data.sistemas != undefined){
+                   this.sistemas = data.sistemas
+                 }
+
+                 if(data.componentes != undefined){
+                   this.componentes = data.componentes
+                 }
+
+               })
+          }
+          return
+        }
+      })
+    }
+
+  }
 }
+
 </script>
 
 <style>

@@ -20,26 +20,20 @@
           </li>
           <li class="nav-item">
             <router-link :to="{ name: 'inicioMecanico'}" class="nav-link">
-                <i class="menu-icon mdi mdi-television"></i>
-                <span class="menu-title">Inicio</span>
+                <i class="menu-icon mdi mdi-settings"></i>
+                <span class="menu-title">Crear Servicio</span>
             </router-link>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <router-link :to="{ name: 'perfilMecanico'}" class="nav-link">
                 <i class="menu-icon mdi mdi-account-star"></i>
-                <span class="menu-title">Mi Perfil</span>
+                <span class="menu-title">Ver Servicios Realizados</span>
             </router-link>
           </li>
           <li class="nav-item">
             <router-link :to="{ name: 'servicioMecanico'}" class="nav-link">
                 <i class="menu-icon mdi mdi-account-multiple"></i>
-                <span class="menu-title">Crear Servicio</span>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{ name: 'serviciosRealizados'}" class="nav-link">
-                <i class="menu-icon mdi mdi-settings"></i>
-                <span class="menu-title">Servicios Realizados</span>
+                <span class="menu-title">Diagnóstico Digital</span>
             </router-link>
           </li>
            <li class="nav-item">
@@ -47,7 +41,13 @@
                 <i class="menu-icon mdi mdi-buffer"></i>
                 <span class="menu-title">Productos</span>
             </router-link>
-          </li> -->
+          </li>
+            <li class="nav-item">
+            <router-link :to="{ name: 'perfilMecanico'}" class="nav-link">
+                <i class="menu-icon mdi mdi-television"></i>
+                <span class="menu-title">Mi Perfil</span>
+            </router-link>
+          </li>
         
         </ul>
       </nav>

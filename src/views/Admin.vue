@@ -17,10 +17,11 @@
               </div>
           
                 <div class="form-group">
-                  <label class="label">Correo Electrónico</label>
+                  <label class="label">Correo Electrónico </label>
                   <div class="input-group">
-                    <input type="email" class="form-control form-control-lg" :class="validarCorreo" v-model="userEmail" placeholder="micorreo@correo.com">
+                    <input type="email" class="form-control form-control-lg" :class="validateFormatEmail" v-model="userEmail" placeholder="micorreo@correo.com">
                   </div>
+                  
                 </div>
                 <div class="form-group">
                   <label class="label">Contraseña</label>
@@ -29,8 +30,10 @@
                   </div>
                 </div>
                 <div class="form-group mb-4">
+                  <p class="help-block text-center text-reddit"><small>{{emptyData}}</small></p>
                    <!-- <a href="http://gidis.ufps.edu.co/tallerapp/index.html" class="btn btn-primary submit-btn btn-block">Iniciar Sesión</a> -->
-                  <button class="btn btn-primary btn btn-block" @click="initSession()">Iniciar Sesión</button>
+                  <button class="btn btn-primary btn btn-block"  @click="initSession()">Iniciar Sesión</button>
+                  
                 </div>
                     <ul class="auth-footer">
                       <li>
@@ -72,30 +75,45 @@ export default {
   data() {
     return {
        userEmail: '',
-       userPass: ''
+       userPass: '',
+       emptyData: ''
+
     }
   },
   computed: {
-    validarCorreo(){
-        if (util.emailRegex.test(this.userEmail)) {
-            return " is-valid";
-            } else {
-             return " is-invalid";
-            }
+
+    validateFormatEmail(){
+      return util.validarCorreo(this.userEmail)
     }
+    
   },
   methods:{
     initSession(){
 
-      
-
-      firebase.auth().signInWithEmailAndPassword(this.userEmail, this.userPass)
+      if(this.userEmail.length === 0 && this.userPass.length === 0){
+        this.emptyData = "Debe ingresar un correo y una contraseña para iniciar sesión"
+      }
+      else if(this.userEmail.length === 0){
+         this.emptyData = "Debe ingresar un correo para iniciar sesión"
+         
+       }else if(this.userPass.length === 0){
+         this.emptyData = "Debe ingresar una contraseña para iniciar sesión"
+       }else{
+         firebase.auth().signInWithEmailAndPassword(this.userEmail, this.userPass)
         .then(user => {
             this.$router.replace('dashboardAdmin');
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err)
+          this.emptyData = "No se encontró registro de este usuario por favor verifique el correo o contraseña ingresados"
         })
+       }
+
+        
+      
+      
+
+     
   
     }
   }

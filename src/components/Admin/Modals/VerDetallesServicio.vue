@@ -51,9 +51,8 @@
 
     </div>
       <div class="modal-footer">
-        <small>{{sizeArray + 1}}</small>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Crear Producto</button>
+        <button type="submit" class="btn btn-primary">Editar Producto</button>
       </div>
       </form>
     </div>
@@ -61,91 +60,3 @@
 </div>
     </div>
 </template>
-
-<script>
-import {mapActions, mapGetters, mapMutations} from "vuex";
-import $ from "jquery";
-import Swal from "sweetalert2"
-export default {
-
-    props: ["sizeArray"],
-
-    mounted(){
-        this.$store.dispatch("getAllCategoriesProducts")
-        
-    },
-    
-    data(){
-        return{
-            id: '',
-            categoria: '',
-            nombreProducto: '',
-            precioVenta: 0,
-            precioCompra: 0,
-            unidad: '',
-            cantidad: 0,
-            marca: ''
-        }
-    },
-    
-    methods:{
-        loadProducts(product){
-            this.id = product
-            console.log('id producto: ', product)
-            this.$store.dispatch("getCantProducts", {idCategory: this.id})
-        },
-
-        getCantidad(){
-          return this.$store.state.cantProducts;
-        },
-         crearProducto(){
-           console.log('sizeArray', this.sizeArray + 1)
-           let product = {
-             id: this.id,
-             product: [{
-               id: this.sizeArray + 1,
-               nombre: this.nombreProducto,
-               marca: this.marca,
-               unidadDeMedida: this.unidad,
-               cantidadEnStock:this.cantidad,
-               precioCompra: this.precioCompra,
-               precioVenta: this.precioVenta}
-               ]
-           }
-           
-          this.$store.dispatch('addProductsToCategory', { id: this.id, productToAdd: JSON.stringify(product)})
-        
-        
-           
-         
-           $('#ModalAniadirProducto').modal('hide');
-          
-           const Toast = Swal.mixin({
-                          toast: true,
-                          position: 'bottom-start',
-                          showConfirmButton: false,
-                          timer: 3000
-                        });
-
-            Toast.fire({
-              type: 'success',
-              title: 'Producto Agregado'
-            })
-            
-        },
-        
-        
-    },
-    computed:{  
-         getMarcas(){
-            return this.$store.getters.getMarcas;
-        }
-        
-    }
-
-}
-</script>
-
-<style>
-
-</style>

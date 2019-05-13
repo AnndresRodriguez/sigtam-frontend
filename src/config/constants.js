@@ -4,7 +4,7 @@ let API_SIGTAM = "localhost:3000";
 
 const constants = {
   URL_ADMIN: `http://${API_SIGTAM}/admin/`,
-  URL_CAROCERIA: `http://${API_SIGTAM}/carroceria/`,
+  URL_CARROCERIA: `http://${API_SIGTAM}/carroceria/`,
   URL_CHASIS: `http://${API_SIGTAM}/chasis/`,
   URL_CITAS: `http://${API_SIGTAM}/citas/`,
   URL_CLIENTES: `http://${API_SIGTAM}/clientes`,
