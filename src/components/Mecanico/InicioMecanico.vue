@@ -8,6 +8,43 @@
           <i class="mdi mdi-account-plus"></i>Crear Servicio</button>
         </div>
 
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-6 col-form-label">Seleccione el Cliente</label>
+                  <div class="col-sm-6">
+                     <select class="form-control" @change="getVehicle(idVehicle)" v-model="idVehicle">
+                       <option value="" selected disabled>Seleccione un Cliente</option> 
+                       <option v-for="cliente in clientes" :key="cliente.nombre"  :value="cliente.id">{{ `${cliente.nombre} ${cliente.apellidos}`  }}</option>
+                     </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex justify-content-between align-content-center align-items-center">
+                  <template v-if="vehicle.marca != undefined">
+                     <div class="d-flex justify-content-around align-items-center mt-2">
+                       <p class="mb-0">Automóvil</p>
+                       <h6 class="font-weight-bold mb-0 ml-2">{{`${vehicle.marca} ${vehicle.modelo}` }}</h6>
+                     </div>
+
+                     <div class="d-flex justify-content-around align-items-center mt-2">
+                       <p class="mb-0">Año</p>
+                       <h6 class="font-weight-bold mb-0 ml-2">{{`${vehicle.anio}` }}</h6>
+                     </div>
+
+                     
+                     
+                     <div class="d-flex justify-content-around align-items-center mt-2">
+                       <p class="mb-0">Placa</p>                    
+                       <h6 class="font-weight-bold mb-0 ml-2">{{`${vehicle.placa}` }}</h6>
+                     </div>
+                  </template>
+                 
+                </div>
+              </div>         
+            </div>
+
           <div class="row mt-4">
               <div class="col-md-6">
                 <div class="form-group row">
@@ -31,25 +68,9 @@
                     </select>
                   </div>
                 </div>
-              </div>
-            
+              </div>         
             </div>
-        <!-- <div class="d-flex flex-row mt-4 align-items-center">
-          <h6 class="mb-0 text-center">Seleccione el Tipo de Servicio</h6>
-            <div class="ml-5">
-              <select class="form-control" style="width: 220px" @change="getType(idTipo)" v-model="idTipo">
-                <option value="" selected disabled>Seleccione un tipo</option> 
-                <option v-for="tipo in tiposServicios" :key="tipo.nombre"  :value="tipo.id">{{ tipo.nombre }}</option>
-              </select>
-            </div>
-
-           <h6 class="mb-0 text-center ml-5">Seleccione la Parte del Auto</h6>
-           <select class="form-control ml-4" style="width: 220px" @change="getPartCart(idPart)" v-model="idPart">
-                <option value="0" selected disabled>Seleccione una Parte</option> 
-                <option value="1">Carrocería</option> 
-                <option value="2">Chasis</option>
-           </select>
-        </div> -->
+   
         
           <template v-if="idPart==1">
 
@@ -99,7 +120,7 @@
                   <label class="col-sm-6 col-form-label">Seleccione el Subsistema</label>
                   <div class="col-sm-6">
                     <select class="form-control" @change="getDataSubSystem(idSubSystemSelected)" v-model="idSubSystemSelected">
-                     <option value="" selected disabled>Seleccione un Subsistema</option> 
+                     <!-- <option value="selected" selected disabled>Seleccione un Subsistema</option>  -->
                      <option v-for="system in sistemas" :key="system.nombre" :value="system.id">{{ system.nombre }}</option>
                    </select>
                   </div>  
@@ -116,110 +137,52 @@
             </div>
 
               <div class="row">
-
                 <div class="col-md-6">
-
                    <div class="d-flex flex-row justify-content-between align-items-center">
-                <template v-if="sistemas.length != 0">
-                  <button class="btn btn-primary" @click="verSubsistemas = true">Cargar Subsistemas</button>
-                </template>
-
-                <template v-if="partes.length != 0">
-                  <button class="btn btn-success" @click="verPartes = true">Cargar Partes</button>
-                </template>
-
-                 <template v-if="componentes.length != 0">
-                  <button class="btn btn-info" @click="verComponentes = true">Cargar Componentes</button>
-                </template>
-              </div>
-
+                      <template v-if="sistemas.length != 0">
+                        <button class="btn btn-primary" @click="verSubsistemas = true">Cargar Subsistemas</button>
+                      </template>
+                      <template v-if="partes.length != 0">
+                        <button class="btn btn-success" @click="verPartes = true">Cargar Partes</button>
+                      </template>
+                       <template v-if="componentes.length != 0">
+                        <button class="btn btn-info" @click="verComponentes = true">Cargar Componentes</button>
+                      </template>
+                  </div>
                 </div>
-               
-
-              
-
-            
-<!-- 
-               <template v-if="subsistema.length != 0">
-                <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
-                  <p class="mt-3">Añada el Componente del Subsistema</p>
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th class="table-primary">Componentes del Subsistema</th>
-                        <th class="table-primary">Acción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="sub in subsistema" :key="sub.id">
-                        <td>{{sub}}</td>
-                        <td>
-                          <button class="btn btn-primary btn-sm" @click="aniadirSubsistema(sub)">Añadir</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>      
-              </template>
-
-              <div class="col-md-2"></div>
-
-              <template v-if="partes.length != 0">
-                    <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
-                    <p class="mt-3">Añada las partes del Sistema</p>
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th class="table-primary">Componentes del Subsistema</th>
-                          <th class="table-primary">Acción</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="parte in partes" :key="parte">
-                          <td>{{parte}}</td>
-                          <td>
-                            <button class="btn btn-primary btn-sm" @click="aniadirParte(parte)">Añadir</button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>   
-              </template>  -->
-
-
               </div>
 
-              <div class="row mt-5">
-
-               <template v-if="subsistema.length != 0">
-                <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
-                  <p class="mt-3">Añada el Componente del Subsistema</p>
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th class="table-primary">Componentes del Subsistema</th>
-                        <th class="table-primary">Acción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="sub in subsistema" :key="sub.id">
-                        <td>{{sub}}</td>
-                        <td>
-                          <button class="btn btn-primary btn-sm" @click="aniadirSubsistema(sub)">Añadir</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>      
-              </template>
-
-              <template v-if="verSubsistemas">
-                  <div class="col-md-2"></div>
-              </template>
-
-              <template v-if="verPartes">
-                    <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
-                    <p class="mt-3">Añada las partes del Sistema</p>
+                 <div class="row mt-3">
+                   <template v-if="subsistema.length != 0">
+                      <div class="col-md-6">
+                        <h6 class="mt-3">Añada el Componente del Subsistema</h6>
+                         <div style="height:150px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;" class="mt-3">
+                         <div class="table-responsive">
+                         <table class="table table-hover">
+                           <thead>
+                             <tr>
+                               <th class="table-primary">Componentes del Subsistema</th>
+                               <th class="table-primary">Acción</th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                             <tr v-for="sub in subsistema" :key="sub.id">
+                               <td>{{sub}}</td>
+                               <td>
+                                 <button class="btn btn-primary btn-sm" @click="aniadirSubsistema(sub)">Añadir</button>
+                               </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div> 
+                     </div>
+                   </div>
+                </template>
+               <template v-if="verPartes">
+                  <div class="col-md-6">
+                    <h6 class="mt-3">Añada las partes del Sistema</h6>
+                    <div style="height:150px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;" class="mt-3">
+                    <div class="table-responsive">
                     <table class="table table-hover">
                       <thead>
                         <tr>
@@ -236,12 +199,19 @@
                         </tr>
                       </tbody>
                     </table>
-                  </div>   
-              </template>
+                  </div>
 
-              <template v-if="verComponentes">
-                    <div class="table-responsive col-md-5" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
-                    <p class="mt-3">Añada los Componentes del Sistema</p>
+                    </div>
+
+                  </div>
+                 
+              </template>
+                 <template v-if="verComponentes">
+                   <div class="col-md-6">
+                   <h6 class="mt-3">Añada los Componentes del Sistema</h6>
+                   <div style="height:150px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;" class="mt-3">
+
+                    <div class="table-responsive">
                     <table class="table table-hover">
                       <thead>
                         <tr>
@@ -258,11 +228,21 @@
                         </tr>
                       </tbody>
                     </table>
-                  </div>   
+                  </div>
+
+                   </div>
+
+                   </div>
+                  
               </template>
+              </div>
+     
+                    
+
+           
                 
 
-              </div>
+              
     
               
                  
@@ -272,9 +252,9 @@
         
 
          
-        <template>
+        <!-- <template>
           <pre>{{$data}}</pre>
-        </template>
+        </template> -->
       </div>
     </div>
   </div>  
@@ -288,6 +268,8 @@ export default {
     this.getAllTypesServices();
     this.getDataChasis();
     this.getDataCarrocerias();
+    this.getAllClients();
+    this.getAllVehicles();
   },
   data(){
     return{
@@ -295,12 +277,15 @@ export default {
       sistemas: [],
       subsistema: [],
       componentes: [],
+      clientes: [],
       checkbox: '',
       tiposServicios: [],
       datosCarroceria: [],
       datosChasis: [],
       nombresSistemas: [],
       nombresPartes: [],
+      vehicles: [],
+      vehicle: {},
       idTipo: '',
       idPart: 0,
       idPartSelected: '',
@@ -309,6 +294,7 @@ export default {
       verPartes: false,
       verComponentes: false,
       verSubsistemas: false,
+      idVehicle: ''
       
 
     }
@@ -320,11 +306,37 @@ export default {
         this.tiposServicios = res.data;
       })
     },
+
+    getAllClients(){
+       axios.get(`${constants.URL_CLIENTES}`)
+      .then(res => {
+        this.clientes = res.data;
+      })
+
+    },
+
+    getAllVehicles(){
+      axios.get(`${constants.URL_VEHICULOS}`)
+      .then(res => {
+        this.vehicles = res.data;
+      })
+    },
     getType(tipo){
       console.log('id tipo', tipo)
     },
     getPartCart(parte){
       console.log('id parte', parte)
+    },
+
+    getVehicle(idVehicle){
+      console.log('id vehiculo', idVehicle)
+      this.vehicles.forEach(vehiculo => {
+        console.log('ciclo', vehiculo.idUser )
+        if (vehiculo.idUser === idVehicle){
+          this.vehicle = vehiculo;
+        }
+        return
+      })
     },
 
     aniadirServicio(nombre){
