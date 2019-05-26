@@ -156,7 +156,7 @@ export default {
            axios
               .post(`${constants.URL_PRODUCTOS}/all/${idProduct}`)
               .then(res => {
-                  this.productos = res.data.productos
+                  this.productos = res.data.allproductos
                   this.cantProducts = this.productos.length;
                   console.log('cantidad de productos', this.cantProducts)
                }).catch(err => console.log(err));
@@ -205,7 +205,7 @@ export default {
              axios
               .post(`${constants.URL_PRODUCTOS}/all/1`)
               .then(res => {
-                  this.productos = res.data.productos
+                  this.productos = res.data.allproductos
                   this.cantProducts = this.productos.length;
                }).catch(err => console.log(err));
           

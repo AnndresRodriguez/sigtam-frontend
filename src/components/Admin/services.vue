@@ -1,7 +1,7 @@
 
 <template>
-        <div>
-            <div class="row">
+        <div>  
+          <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -20,7 +20,7 @@
 
                     <!-- <template v-else> -->
 
-                    <div class="row ticket-card mt-5 pb-2 pt-2 border-bottom border-top pb-3 mb-3" style="border-bottom: 3px solid #f2f2f2; border-top: 3px solid #f2f2f2; " v-for="factura in facturas" :key="factura.id">
+                    <div class="row ticket-card mt-5 pb-2 pt-2 border-bottom border-top pb-3 mb-3" style="border-bottom: 3px solid #f2f2f2; border-top: 3px solid #f2f2f2; " v-for="factura in facturas" :key="factura.id" :value="factura">
                       <div class="col-md-1">
                         <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/servicio.jpg" alt="profile image">
                       </div>
@@ -60,7 +60,8 @@
                             <small class="mb-0 mr-2 ">Hora de Reparación :</small>
                             <small class="Last-responded mr-2 mb-0 text-dark">{{factura.hora}}</small>
                           </div>  
-                        </div>                        
+                        </div>  
+                                              
                       </div>
 
 
@@ -85,7 +86,6 @@
                                     <nav class="mt-3">
                                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                        <a class="nav-item nav-link active" id="nav-service-tab" data-toggle="tab" href="#nav-service" role="tab" aria-controls="nav-service" aria-selected="true"><p class="font-weight-bold mb-0"> Detalles del Servicio</p> </a>
-                                       <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><p class="font-weight-bold mb-0">Productos Asociados</p></a> -->
                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><p class="font-weight-bold mb-0">Detalles Transacción</p></a>
                                      </div>
                                     </nav>
@@ -160,13 +160,15 @@
                          </div> <!--Finaliza row -->
                         </template>
                       </div>
+                      <!-- </template> -->
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>    
+            <pre>{{$data}}</pre>
+        </div>
+          
 </template>
 
 <script>
@@ -175,7 +177,7 @@ import constants from "../../config/constants.js"
 export default {
 
   mounted(){
-  this.getFacturas()
+     this.getFacturas();
   },
 
   data(){
@@ -189,11 +191,18 @@ export default {
     getFacturas(){
       axios.get(`${constants.URL_FACTURAS}`)
       .then(res => {
-       this.facturas = res.data;
+        // console.log(res.data)
+        this.facturas = res.data;
       })
     }
     
 
+  },
+
+  computed:{
+    getAllFacturas(){
+      return this.facturas;
+    }
   }
 
  

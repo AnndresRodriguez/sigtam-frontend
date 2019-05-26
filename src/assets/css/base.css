@@ -5906,11 +5906,11 @@
 
 @-moz-keyframes rotateOutDownRight {
   0% {
-    -webkit-transform-origin: right bottom 50%;
-    -moz-transform-origin: right bottom 50%;
-    -ms-transform-origin: right bottom 50%;
-    -o-transform-origin: right bottom 50%;
-    transform-origin: right bottom 50%;
+    -webkit-transform-origin: to left bottom 50%;
+    -moz-transform-origin: to left bottom 50%;
+    -ms-transform-origin: to left bottom 50%;
+    -o-transform-origin: to left bottom 50%;
+    transform-origin: to left bottom 50%;
     -webkit-transform: rotate(0);
     -moz-transform: rotate(0);
     -ms-transform: rotate(0);
@@ -5918,11 +5918,11 @@
     transform: rotate(0);
     opacity: 1; }
   100% {
-    -webkit-transform-origin: right bottom 50%;
-    -moz-transform-origin: right bottom 50%;
-    -ms-transform-origin: right bottom 50%;
-    -o-transform-origin: right bottom 50%;
-    transform-origin: right bottom 50%;
+    -webkit-transform-origin: to left bottom 50%;
+    -moz-transform-origin: to left bottom 50%;
+    -ms-transform-origin: to left bottom 50%;
+    -o-transform-origin: to left bottom 50%;
+    transform-origin: to left bottom 50%;
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
@@ -16105,16 +16105,16 @@ ul {
 /* === Landing screens === */
 /* Auth */
 .auth.auth-bg-1 {
-  background: url("../img/auth-img/background-admin-2.jpg");
+  background: url("../img/auth-img/fondo-mecanicapp.jpg");
   background-size: cover; }
 
 .auth.auth-bg-2 {
-    background: url("../img/auth-img/background-mecanico.jpg");
+    background: url("../img/auth-img/background-admin-2.jpg");
     background-size: cover; }
 
 .auth.auth-bg-3 {
-    background: url("../img/auth-img/fondo-mecanicapp.jpg");
-    background-size: cover; }    
+      background: url("../img/auth-img/background-mecanico.jpg");
+      background-size: cover; }
 
 .auth.register-bg-1 {
   background: url("../img/auth-img/register.jpg") center center no-repeat;
@@ -16172,14 +16172,14 @@ ul {
       border-right: none; }
     .auth.theme-one .auth-footer li a {
       font-size: 13px;
-      color: black ; }
+      color: rgba(255, 255, 255, 0.4); }
   @media (max-width: 767.98px) {
     .auth.theme-one .auth-footer {
       -webkit-justify-content: center;
       justify-content: center; } }
 
 .auth.theme-one .footer-text {
-  color: black }
+  color: rgba(255, 255, 255, 0.4); }
 
 .auth.theme-two .auto-form-wrapper {
   position: relative;
