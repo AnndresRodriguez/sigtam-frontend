@@ -1,0 +1,16 @@
+c266e90 Finalizado Seccion servicios
+4ffd33a insercion de cliente en aniadir servicio
+fb3291e creacion de servicios por parte del mecanico
+3655daa Integracion de Vuex
+17ffb3e Visualizaacion de Productos
+228f73a Autenticacion inicial con firebase
+84fc981 Iniciando Productos y servicios
+b129aaf Clientes y Vehiculos finalizados
+8afda23 clientes casi finalizado (Falta Insercion de Vehiculo)
+d39c15f Crud de mecánicos terminado
+04a998c CRUD de mecanicos realizado
+72e6b01 Edicion de json local
+554cc1c Actualizacion de Marcas de Autos
+aafbe82 Integracion de las vistas
+a3a822f Integracion vistas mecanico y admin
+86c6a72 init

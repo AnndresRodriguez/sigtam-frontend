@@ -52,7 +52,7 @@
                   <div class="col-sm-6">
                      <select class="form-control" @change="getType(idTipo)" v-model="idTipo">
                        <option value="" selected disabled>Seleccione un tipo</option> 
-                       <option v-for="tipo in tiposServicios" :key="tipo.nombre"  :value="tipo.id">{{ tipo.nombre }}</option>
+                       <option v-for="tipo in tiposServicios" :key="tipo.id"  :value="tipo.nombre">{{ tipo.nombre }}</option>
                      </select>
                   </div>
                 </div>
@@ -74,7 +74,14 @@
         
           <template v-if="idPart==1">
 
-          <p class="mt-3">Seleccione la Parte de la Carrocería a Reparar</p>
+          
+          <div class="d-flex justify-content-between w-50 mb-3">
+            <p class="mt-0 mb-0">Seleccione la Parte de la Carrocería a Reparar</p>
+            <div class="custom-control custom-checkbox pl-0">
+              <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="aniadirCarroceria">
+              <label class="custom-control-label" style="width: 132px;" for="customCheck1"><p class="mb-0 text-center">Añadir Parte</p> </label>
+            </div>
+          </div>
           <div class="row">
            <div class="table-responsive col-md-6" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
            <table class="table table-hover">
@@ -237,20 +244,8 @@
               </template>
               </div>
      
-                    
-
-           
-                
-
-              
-    
-              
-                 
           </template> 
-       
-       
-        
-
+         
          
         <!-- <template>
           <pre>{{$data}}</pre>
@@ -274,6 +269,7 @@ export default {
   data(){
     return{
       partes: [],
+      aniadirCarroceria: false,
       sistemas: [],
       subsistema: [],
       componentes: [],
@@ -284,6 +280,7 @@ export default {
       datosChasis: [],
       nombresSistemas: [],
       nombresPartes: [],
+      nombreParte: '',
       vehicles: [],
       vehicle: {},
       idTipo: '',
@@ -325,7 +322,9 @@ export default {
       console.log('id tipo', tipo)
     },
     getPartCart(parte){
-      console.log('id parte', parte)
+
+      parte != 1 ? this.nombreParte = "Chasis" : this.nombreParte = "Carroceria"
+      
     },
 
     getVehicle(idVehicle){
@@ -346,6 +345,8 @@ export default {
     getDataCarrocerias(){
       axios.get(`${constants.URL_CARROCERIA}`)
       .then(res => {
+        
+        console.log(res.data)
         this.datosCarroceria = res.data;
         this.datosCarroceria.forEach(dato => {
           this.nombresPartes.push({id: dato.id, nombre: dato.nombre})

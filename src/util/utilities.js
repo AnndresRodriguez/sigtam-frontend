@@ -34,6 +34,11 @@ const util = {
     } else {
       return " badge-success";
     }
+  },
+  getNameService: id => {
+    if (id === 1){
+      return "Reparación"
+    } 
   }
 };
 

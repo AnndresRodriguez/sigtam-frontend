@@ -221,12 +221,7 @@
                                           <h4 class="font-weight-semibold ml-3 mb-0 no-wrap mt-3">Total a Pagar</h4>  
                                           <h4 class="text-success font-weight-semibold ml-3 mb-0 no-wrap mt-3">{{((facturaInd.productos[0].precioVenta) * (facturaInd.productos[0].cantidad)) + ((facturaInd.precioManoObra) + (facturaInd.precioManoObra * 0.19))}}</h4>
                                           </div>
-                                            
-                                                             
-
-
-                                          
-                                          
+                                                                                    
                                        </div>
                                      </div>
                                 </div>
