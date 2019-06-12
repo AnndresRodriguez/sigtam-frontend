@@ -141,7 +141,7 @@
                     <div class="card-body">
                       <p class="text-primary">
                         Los Campos marcados con (*) no pueden quedar vacíos <br>
-                        Es Obligatorio Añadir un Auto al Cliente Nuevo
+
                         </p>
                       <form class="forms-sample" @submit.prevent="addClient()" enctype="multipart/form-data">
                       <template v-if="!addCar">
@@ -631,7 +631,7 @@ export default {
           })
         },
         viewMarcas(marca){
-          console.log(`marca Seleccionada: ${marca}`);
+          // console.log(`marca Seleccionada: ${marca}`);
           axios.get(`${constants.URL_MARCAS}/modelos/${marca}`)
           .then(res => {
              this.modelos = res.data;

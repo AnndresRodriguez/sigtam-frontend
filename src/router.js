@@ -11,7 +11,7 @@ import Mecanicos from "./components/Admin/mechanics.vue";
 import Clientes from "./components/Admin/clientes.vue";
 import Servicios from "./components/Admin/services.vue";
 import Productos from "./components/Admin/products.vue";
-import firebase from "firebase";
+//import firebase from "firebase";
 
 //-----------------Mecanico--------------------------------
 import DashboardMecanico from "./views/DashboardMechanic.vue";

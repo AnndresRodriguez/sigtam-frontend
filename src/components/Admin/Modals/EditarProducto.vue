@@ -55,7 +55,7 @@
         <button type="submit" class="btn btn-primary">Editar Producto</button>
       </div>
 
-      <pre>{{getCurrentProduct}}</pre>
+      <!-- <pre>{{getCurrentProduct}}</pre> -->
      
       </form>
     </div>

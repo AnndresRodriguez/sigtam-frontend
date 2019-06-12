@@ -1,3 +1,15 @@
+const date = new Date();
+
+let amPm = (hora, minuto) =>{
+  if (hora < 12) {
+    return "a.m.";
+  } else if (hora == 12 && minuto == 0) {
+    return "m";
+  } else {
+    return "p.m.";
+  }
+}
+
 const util = {
   emailRegex: /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i,
   validarCorreo: correo => {
@@ -35,11 +47,16 @@ const util = {
       return " badge-success";
     }
   },
-  getNameService: id => {
-    if (id === 1){
-      return "Reparación"
-    } 
+
+  date: () => {
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  },
+  hour: () => {
+    return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ${amPm(
+      date.getHours(),
+      date.getMinutes()
+    )}`;
   }
 };
 
-module.exports = util;
+export default util;
