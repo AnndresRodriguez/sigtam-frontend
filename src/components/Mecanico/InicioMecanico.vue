@@ -47,18 +47,7 @@
 
           <div class="row mt-4">
               <div class="col-md-6">
-                <div class="form-group row">
-                  <label class="col-sm-6 col-form-label font-weight-bolder">Seleccione el Tipo de Servicio</label>
-                  <div class="col-sm-6">
-                     <select class="form-control" @change="getType(idTipo)" v-model="idTipo">
-                       <option value="" selected disabled>Seleccione un tipo</option> 
-                       <option v-for="tipo in tiposServicios" :key="tipo.id"  :value="tipo.nombre">{{ tipo.nombre }}</option>
-                     </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group row">
+                 <div class="form-group row">
                   <label class="col-sm-6 col-form-label font-weight-bolder">Seleccione una parte del Automóvil</label>
                   <div class="col-sm-6">
                     <select class="form-control" @change="getPartCart(idPart)" v-model="idPart">
@@ -68,11 +57,20 @@
                     </select>
                   </div>
                   <div class="col-sm-6">
-                    
-                    <!-- <button class="btn btn-success" @click="savePdf0()"> Generar factura</button> -->
-
                   </div>
                 </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-6 col-form-label font-weight-bolder">Seleccione el Tipo de Servicio</label>
+                  <div class="col-sm-6">
+                     <select class="form-control" @change="getType(idTipo)" v-model="idTipo">
+                       <option value="" selected disabled>Seleccione un tipo</option> 
+                       <option v-for="tipo in tiposServicios" :key="tipo.id"  :value="tipo.nombre">{{ tipo.nombre }}</option>
+                     </select>
+                  </div>
+                </div>
+               
               </div>         
             </div>
    
@@ -101,12 +99,20 @@
                       <tr v-for="nombre in nombresPartes" :key="nombre.id" :value="nombre.nombre">
                         <td>{{nombre.nombre}}</td>
                         <td>
-                          <template v-if="!nombre.added">
-                             <button class="btn btn-primary btn-sm" @click="aniadirServicio(nombre.nombre, nombre.id)">Añadir</button>
+
+                          <template v-if="!nombre.inFact">
+                            <template v-if="!nombre.added">
+                               <button class="btn btn-primary btn-sm" @click="aniadirServicio(nombre.nombre, nombre.id)">Añadir</button>
+                            </template>
+                            <template v-else>
+                               <button class="btn btn-danger btn-sm" @click="retirarServicio(nombre.id)">Retirar</button>
+                            </template>
                           </template>
                           <template v-else>
-                            <button class="btn btn-danger btn-sm" @click="retirarServicio(nombre.id)">Retirar</button>
+                              <button class="btn btn-success btn-sm" disabled>Añadido</button>
                           </template>
+                        
+                          
                          
                         </td>
                       </tr>
@@ -131,7 +137,7 @@
               <template v-if="partsAdd.length > 0">
                 <h5 class="mt-4 mb-0 text-center">Ingrese los detalles de la reparación</h5>
                 <div class="mt-4" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
-                  <div v-for="(item, index) in partsAdd" :key="item.id" :value="index" class="mt-2 ml-2">
+                  <div v-for="(item, index) in partsAdd" :key="index" :value="item" class="mt-2 ml-2">
                     <h6 class="mt-4">{{item.nombreParte}}</h6>
                     <div class="row">
                       <div class="col-md-10">
@@ -144,7 +150,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="manoObra">Precio mano de Obra</label>
-                              <input type="text" class="form-control" id="manoObra" placeholder="" @keyup="item.precio = $event.target.value">
+                              <input type="text" class="form-control"  id="manoObra" placeholder="" @keyup="item.precio = $event.target.value">
                            </div>
                         </div>
                         <div class="col-md-6">
@@ -158,6 +164,7 @@
                  
                 </div>  
               </template>
+              
             </div> 
           </div>
 
@@ -176,7 +183,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group row">
-                  <label class="col-sm-6 col-form-label">Seleccione el sistema del Chasis</label>
+                  <label class="col-sm-6 col-form-label font-weight-bold">Seleccione el sistema del Chasis</label>
                   <div class="col-sm-6">
                     <select class="form-control" @change="getDataSystem(idSystemSelected)" v-model="idSystemSelected">
                      <option value="" selected disabled>Seleccione una Sistema</option> 
@@ -191,7 +198,7 @@
                <template v-if="verSubsistemas">
              
                 <div class="form-group row">
-                  <label class="col-sm-6 col-form-label">Seleccione el Subsistema</label>
+                  <label class="col-sm-6 col-form-label font-weight-bold">Seleccione el Subsistema</label>
                   <div class="col-sm-6">
                     <select class="form-control" @change="getDataSubSystem(idSubSystemSelected)" v-model="idSubSystemSelected">
                      <!-- <option value="selected" selected disabled>Seleccione un Subsistema</option>  -->
@@ -201,8 +208,6 @@
                 </div>
              
               </template>
-
-             
 
              </div>
               
@@ -240,75 +245,135 @@
                              </tr>
                            </thead>
                            <tbody>
-                             <tr v-for="sub in subsistema" :key="sub.id">
-                               <td>{{sub}}</td>
+                             <tr v-for="(item, index) in subsistema" :key="index">
+                               <td>{{item.nombreComponente}}</td>
                                <td>
-                                 <button class="btn btn-primary btn-sm" @click="aniadirSubsistema(sub)">Añadir</button>
+                                 <template v-if="!item.added">
+                                    <button class="btn btn-primary btn-sm" @click="aniadirSubsistema(item.nombreComponente, item.id)">Añadir</button>
+                                 </template>
+                                 <template v-else>
+                                   <button class="btn btn-danger btn-sm" @click="retirarSubsistema(item.id)">Retirar</button>
+                                 </template>
+                                 
                                </td>
                              </tr>
                            </tbody>
                          </table>
                        </div> 
                      </div>
+                     
                    </div>
                 </template>
-               <template v-if="verPartes">
-                  <div class="col-md-6">
-                    <h6 class="mt-3">Añada las partes del Sistema</h6>
-                    <div style="height:150px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;" class="mt-3">
-                    <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th class="table-success">Partes del Sistema</th>
-                          <th class="table-success">Acción</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="parte in partes" :key="parte">
-                          <td>{{parte}}</td>
-                          <td>
-                            <button class="btn btn-success btn-sm" @click="aniadirParte(parte)">Añadir</button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                    </div>
-
-                  </div>
-                 
-              </template>
-                 <template v-if="verComponentes">
-                   <div class="col-md-6">
-                   <h6 class="mt-3">Añada los Componentes del Sistema</h6>
-                   <div style="height:150px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;" class="mt-3">
-
-                    <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th class="table-info">Componentes del Subsistema</th>
-                          <th class="table-info">Acción</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="componente in componentes" :key="componente">
-                          <td>{{componente}}</td>
-                          <td>
-                            <button class="btn btn-info btn-sm" @click="aniadirComponente(componente)">Añadir</button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+             <template v-if="serviciosChasisFactura.length > 0">
+               <div class="col-md-6">
+                   <h5 class="mt-2 mb-0 text-center">Ingrese los detalles de la reparación</h5>
+                   
+                <div class="mt-4" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
+                  <div v-for="(item, index) in serviciosChasisFactura" :key="item.id" :value="index" class="mt-2 ml-2">
+                    <h6 class="mt-4">{{item.nombreParte}}</h6>
+                    <div class="row">
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <label for="descripcion-reparacion">Descripción de la reparación</label>
+                          <textarea class="form-control" id="descripcion-reparacion" rows="5" @keyup="item.descripcion = $event.target.value"></textarea>
+                        </div>
                       </div>
-                     </div>
-                   </div>
-                </template>
+                      <div class="row ml-2">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="manoObra">Precio mano de Obra</label>
+                              <input type="text" class="form-control" id="manoObra" placeholder="" @keyup="item.precio = $event.target.value">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="d-flex justify-content-around align-items-center mt-4">
+                             <button class="btn btn-primary" @click="insertToTable(item)">Añadir a Factura</button>
+                          </div>
+                        </div>                        
+                      </div>
+                    </div>
+                 </div>
+                </div>
+
+                <div class="custom-control custom-checkbox pl-0 mt-3">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="aniadirProductoChasis">
+                    <label class="custom-control-label" style="width: 152px;" for="customCheck1"><p class="mb-0 text-center">Añadir Producto</p> </label>
+                  </div>
+
+                  
+                
+              
+
+               </div>
+              
+              </template>
+              
               </div>
      
           </template> 
+
+          <template v-if="aniadirProductoChasis">
+            
+          <div class="row">
+            
+            <div class="col-md-6">
+               <div class="form-group row mt-4">
+                    <label class="col-sm-6 col-form-label font-weight-bold">Seleccione el Producto</label>
+                       <div class="col-sm-6">
+                          <select class="form-control" style="width: 200px" @change="getAllProducts(categoria)" v-model="categoria">
+                              <option v-for="product in categorias" :key="product.nombre"  :value="product.id">{{ product.nombre }}</option>
+                          </select>
+                        </div>  
+                </div>
+
+                <div class="table-responsive mt-2" style="height:300px; overflow-y:scroll; box-shadow: #80808052 2px 3px 7px;">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th class="table-primary">Producto</th>
+                        <th class="table-primary">Acción</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="prod in productos" :key="prod.id" :value="prod.nombre">
+                        <td>{{prod.nombre}}</td>
+                        <td>
+                          
+                            <button class="btn btn-success btn-sm" @click="aniadirProducto(prod.nombre, prod.precioVenta)">Añadir</button>
+                          
+                         
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div> 
+                
+              </div> 
+              <div class="col-md-6 mt-5">
+                <template v-if="productTable.length > 0">
+                  <div class="mt-1" v-for="pr in productTable" :key="pr.id">
+                    <h4>{{pr.nombreProducto}}</h4>
+                    <h5>Precio Unidad: {{pr.precioProducto}}</h5>
+                    <div class="form-group row">
+                      <div class="col-3">
+                         <h5>Cantidad</h5>
+                      </div>
+                      <div class="col-9">
+                        <input class="form-control" type="number" value="1" id="example-number-input" v-model="cantidadChasis">
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <button class="btn btn-success btn-sm" @click="crearNuevoProducto()">Añadir</button>
+                  
+                  
+                </template>
+              </div>
+
+          </div>
+            
+          </template>
 
 
           <div class="pl-4 pr-4">
@@ -325,17 +390,31 @@
                           <th>Producto o Servicio</th>
                           <th>Precio Unidad</th>
                           <th>Precio Total</th>
+                          <template v-if="!generatePdf">
+                          <th>Acciones</th>
+                          </template>
                         </tr>
                       </thead>
                       <tbody>
                         <template v-if="serviciosFactura.length > 0">
                           <tr v-for="(item, index) in serviciosFactura" :key="index">
                               <td>{{item.cantidad}}</td>
-                              <td><p class="text-primary mb-2 font-weight-bold">Mantenimiento</p> {{item.description}}</td>
-                              <td class="text-danger">{{item.valueUnity}}</td>
+                              <td><p class="text-primary mb-2 font-weight-bold">{{item.part}}</p> {{item.description}} </td>
+                              <td class="text-danger">{{item.valueUnity}} $</td>
                               <td>
-                                <label class="badge badge-primary font-weight-bold" style="font-size:15px">{{(item.valueUnity * item.cantidad )}}</label>
+                                <label class="badge badge-primary font-weight-bold" style="font-size:15px">{{(item.valueUnity * item.cantidad )}} $</label>
                               </td>
+                              <template v-if="!generatePdf">
+                                <td>
+                                <button type="button" class="btn btn-icons btn-rounded btn-success mr-1" @click="openModalEditService(item)">
+                                  <i class="mdi mdi-file-document-edit-outline mdi-18px"></i>
+                                </button>
+                                <button type="button" class="btn btn-icons btn-rounded btn-danger" @click="eliminarServicio(item.id)">
+                                  <i class="mdi mdi-delete-forever-outline mdi-18px"></i>
+                                </button>
+                              </td>
+                              </template>
+                             
                           </tr>
                         
                         </template>
@@ -343,15 +422,29 @@
                       </tbody>
                       <tfoot>
                         <tr>
-                          <td colspan="3"> <span class="font-font-weight-bold">Total a Pagar</span> </td>
-                          <td><label class="badge badge-success font-weight-bold" style="font-size:15px">{{calcularTotalFactura}}</label></td>
+                          <td colspan="3"> <span class="font-weight-bold" style="font-size:16px">Total a Pagar</span> </td>
+                          <td><label class="badge badge-success font-weight-bold" style="font-size:15px">{{calcularTotalFactura}} $</label></td>
                         </tr>
                       </tfoot>
                     </table>
-                    <button class="btn btn-success" @click="generarFactura2()"> Generar factura</button>
+                    <div class="d-flex justify-content-between mt-3">
+                        <template v-if="confirmChanges">
+                            <button class="btn btn-primary" @click="confirmarCambios()"> Confirmar Cambios</button>
+                        </template>   
+                        <template v-if="generatePdf">
+                            <!-- <button class="btn btn-success" @click="generarFactura2()"> Generar factura</button> -->
+                            <button type="button" class="btn btn-success" @click="generarFactura2()">
+                              <i class="mdi mdi-file-document"></i>Generar factura
+                            </button>
+                        </template>
+                    </div>
+                    
+                    
                   </div>
                   
                 </template>
+
+                
 
               
             
@@ -519,12 +612,7 @@
                             </div>
                           </div>
                         </div>
-                          
-                        
-                      </template>
-
-                        
-                         
+                       </template>                        
                        </form> 
                     </div>
                   </div>
@@ -532,11 +620,56 @@
               </div>
             </div>
           </div>
-      </div>      
+      </div>  
+
+      <!-- Modal -->
+<div class="modal fade" id="modalEditService" tabindex="-1" role="dialog" aria-labelledby="modalEditServiceLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar detalles de la reparación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+
+            <form @submit.prevent="editarServicio()">
+              <div class="form-group">
+                <label for="precio">Precio </label>
+                <input type="text" class="form-control" id="precio" aria-describedby="emailHelp" placeholder="Enter email" v-model="editPrice">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              </div>
+              <div class="form-group">
+                <label for="descripcion-reparacion">Descripcion</label>
+                <textarea class="form-control" id="descripcion-reparacion" rows="5" v-model="editDescription"></textarea>
+
+              </div>
+            
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </form>
+
+           
+              
+           
+                   
+          </div>
+        </div>
+
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>    
          
-        <!-- <template>
+        <template>
           <pre>{{$data}}</pre>
-        </template> -->
+        </template>
       </div>
     </div>
   </div>  
@@ -550,8 +683,9 @@ import jsPDF from "jspdf";
 import Swal from "sweetalert2";
 import $ from "jquery"
 import 'jspdf-autotable';
-//import html2canvas from "html2canvas"
+import html2canvas from "html2canvas"
 import html2pdf from "html2pdf.js"
+
 export default {
   mounted(){
     this.getAllTypesServices();
@@ -560,10 +694,39 @@ export default {
     this.getAllClients();
     this.getAllVehicles();
     this.getMarcas();
+    this.initProducts();
+    this.getMarcasProductos()
+    
     
   },
   data(){
     return{
+      cantidadChasis:1,
+      editPrice: '',
+      generatePdf: false,
+      confirmChanges: true,
+      serialFactura: '',
+      editDescription: '',
+      idServiceToEdit: '',
+      clienteArchivado: 0,
+      editableService: {},
+      datosCarroceria: [],
+      nombresPartes: [],  
+      subsistema: [],
+      clientes: [],
+      vehicles: [],
+      vehicle: {},
+      productos: [],
+      componentes: [],
+      categorias: [],
+      serviciosChasisFactura: [],
+      productTable: [],
+      nombreSeleccionado: '',
+      apellidoSeleccionado: '',
+      cedulaSeleccionada: '',
+      tipoSeleccionado: '',
+      tipoSeleccionadoInFact: '',
+      cantProducts: 0,
       nombres: '',
       apellidos: '', cedula: '', correo: '', celular: '',
       addCar: false, addDataNewCar: false, alertInvalid: false,
@@ -571,24 +734,22 @@ export default {
       marcallantasCarro: '', nuevaplacaCarro: '', nuevakilometrajeCarro: '', nuevaanioCarro: '',
       nuevacolorCarro: '', nuevamotorCarro: '', nuevamarcallantasCarro: '',
       descripcionServicio: '',
-      datosCarroceria: [],
       datosChasis: [],
       precioServicio: '',
       partsAdd: [],
-      nombresPartes: [],
       partes: [],
+      idProduct: 0,
       aniadirCarroceria: false,
+      aniadirProductoChasis: false,
       sistemas: [],
-      subsistema: [],
-      componentes: [],
-      clientes: [],
       checkbox: '',
       tiposServicios: [],
       nombresSistemas: [],
       nombreParte: '',
-      vehicles: [],
       serviciosFactura: [],
-      vehicle: {},
+      parteCarroceria: '',
+      
+
       idTipo: '',
       idPart: 0,
       idPartSelected: '',
@@ -598,6 +759,7 @@ export default {
       verComponentes: false,
       verSubsistemas: false,
       idVehicle: '',
+
 
     }
   },
@@ -619,6 +781,51 @@ export default {
   },
 
   methods:{
+
+    crearNuevoProducto(){
+      let item = {descripcion: "FILTRO DE AIRE (MAXGEAR)", precio: 21600}
+      this.insertToTable(item);
+    },
+
+    aniadirProducto(nombre, precio){
+      this.productTable.push({nombreProducto: nombre, precioProducto: precio})
+    },
+
+      getAllProducts(idProduct){
+           this.idProducto = idProduct
+           axios
+              .post(`${constants.URL_PRODUCTOS}/all/${idProduct}`)
+              .then(res => {
+                  this.productos = res.data.allproductos;
+                  this.cantProducts = this.productos.length;
+                  console.log('cantidad de productos', this.cantProducts)
+               }).catch(err => console.log(err));
+
+               
+           },
+
+      initProducts(){
+          
+             axios
+              .post(`${constants.URL_PRODUCTOS}/all/1`)
+              .then(res => {
+                  this.productos = res.data.allproductos
+                  
+               }).catch(err => console.log(err));
+          
+
+       },
+
+      getMarcasProductos(){
+        axios
+        .post(`${constants.URL_PRODUCTOS}/all`)
+        .then(res => {
+          this.categorias = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+         },
 
       getMarcas(){
           axios.get(`${constants.URL_MARCAS}/all`)
@@ -664,11 +871,14 @@ export default {
       })
     },
 
-    getAllClients(){
-       axios.get(`${constants.URL_CLIENTES}`)
-      .then(res => {
+     getAllClients(){
+
+
+      axios.get(`${constants.URL_CLIENTES}`)
+        .then(res => {
         this.clientes = res.data;
         
+      
       })
 
     },
@@ -682,7 +892,8 @@ export default {
     },
 
     getType(tipo){
-      console.log('id tipo', tipo)
+      this.tipoSeleccionado = tipo;
+      
     },
     getPartCart(parte){
 
@@ -698,9 +909,15 @@ export default {
     },
 
     getVehicle(idnewVehicle){
+      this.clientes.forEach(cliente => {
+        if(cliente.id === idnewVehicle){
+          this.nombreSeleccionado = cliente.nombre;
+          this.apellidoSeleccionado = cliente.apellidos;
+          this.cedulaSeleccionada = cliente.cedula;
+        }
+      })
       
       this.vehicles.forEach(vehiculo => {
-        
         if (vehiculo.idUser === idnewVehicle){
           this.vehicle = vehiculo;
         }
@@ -708,16 +925,103 @@ export default {
       })
     },
 
+    aniadirComponente(componente){
+      console.log(componente)
+
+    },
+
+    aniadirSubsistema(nombresubsistema, indice){
+
+      this.subsistema.forEach(parte => {
+        if(parte.id === indice){
+          parte.added = true;
+          parte.inFact = true;
+        }
+      })
+      this.serviciosChasisFactura.push({id:indice, nombreParte: nombresubsistema, descripcion: '', precio:''})
+     
+    },
+
+    retirarSubsistema(indice){
+      this.serviciosChasisFactura = this.serviciosChasisFactura.filter(item => {
+            return item.id !== indice
+        })
+
+      this.subsistema.forEach(item => {
+        if(item.id === indice){
+          item.added = false;
+        }
+      })
+
+    },
+
+    openModalEditService(item){
+
+      console.log('openmodaleditservice', item)
+      this.editPrice = item.valueUnity;
+      this.editDescription = item.description;
+      this.idServiceToEdit = item.id;
+      $("#modalEditService").modal("show");
+
+      
+    },
+
+    eliminarServicio(indice){
+      
+      this.serviciosFactura = this.serviciosFactura.filter(servicio => {
+        return servicio.id !== indice;
+      });
+
+      this.nombresPartes.forEach(nombre => {
+        if(nombre.id === indice){
+          nombre.inFact = false;
+          nombre.added = false;
+        }
+      })
+
+
+
+
+
+      //this.partsAdd.push({idservice:id, nombreParte: nombre, descripcion:'', precio:0})
+    },
+
     aniadirServicio(nombre, id){
       
       this.nombresPartes.forEach(parte => {
         if(parte.id === id){
           parte.added = true;
+          
+        }
+      })
+      
+      this.partsAdd.push({idservice:id, nombreParte: nombre, descripcion:'', precio:0})
+      
+    },
+
+    editarServicio(){
+      
+      this.serviciosFactura.forEach(service => {
+        if(service.id === this.idServiceToEdit){
+          service.valueUnity = this.editPrice;
+          service.description = this.editDescription;
         }
       })
 
-      this.partsAdd.push({idservice:id, nombreParte: nombre, descripcion:'', precio:''})
-      
+      $("#modalEditService").modal("hide");
+
+      const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-left',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+      Toast.fire({
+            type: 'success',
+            title: 'Edición Realizada Correctamente'
+          })
+
     },
 
     retirarServicio(id){
@@ -736,12 +1040,70 @@ export default {
     },
 
     insertToTable(item){
+
+        console.log('este es el de la factura', item)
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-left',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+
+       if(this.tipoSeleccionado.length === 0){
+
+          Toast.fire({
+            type: 'warning',
+            title: 'Debe Seleccionar un tipo de Servicio'
+          })
+
+       }else if (item.descripcion.length === 0 || item.precio === 0){
+
+          Toast.fire({
+            type: 'warning',
+            title: 'Faltan detalles en la reparación'
+          })
+
+             
+
+       }else{
+             
+               this.tipoSeleccionadoInFact = this.tipoSeleccionado;
+               
+               this.partsAdd = this.partsAdd.filter(part => {
+                    return part.idservice !== item.idservice
+               });
+        
+               this.nombresPartes.forEach(parte => {
+                 if(parte.id === item.idservice){
+                   parte.inFact = true;
+                   this.parteCarroceria = parte.nombre;
+                 }
+               })
+        
+              this.serviciosFactura.push({
+                id: item.idservice,
+                cantidad:1,
+                part: `${this.tipoSeleccionadoInFact}: ${this.parteCarroceria}`,
+                description: item.descripcion,
+                valueUnity: item.precio
+              })
+       }
+
+       
+        
+    },
+
+    insertChasistoTable(item){
+
       this.serviciosFactura.push({
         cantidad:1,
+        part: `${this.tipoSeleccionadoInFact}: ${this.parteCarroceria}`,
         description: item.descripcion,
         valueUnity: item.precio
       })
-        
+
     },
 
     getDataCarrocerias(){
@@ -751,7 +1113,7 @@ export default {
         // console.log(res.data)
         this.datosCarroceria = res.data;
         this.datosCarroceria.forEach(dato => {
-          this.nombresPartes.push({id: dato.id, nombre: dato.nombre, added:false})
+          this.nombresPartes.push({id: dato.id, nombre: dato.nombre, precio: dato.precio, added:false, inFact:false})
         })
       })
     },
@@ -760,7 +1122,7 @@ export default {
       .then(res => {
         this.datosChasis = res.data
         this.datosChasis.forEach( dato => {
-          this.nombresSistemas.push({idSystem: dato.id, nombreSistema: dato.nombre})
+          this.nombresSistemas.push({idSystem: dato.id, nombreSistema: dato.nombre, added:false, inFact:false})
         })
       })
     },
@@ -774,23 +1136,23 @@ export default {
       
       this.sistemas.forEach( system => {
         if(system.id === idSubSystem){
-          this.subsistema = system.componentes;
+          //this.subsistema = system.componentes;
+          this.subsistema = [];
+          system.componentes.forEach((componente, index) => {
+            this.subsistema.push({id: index, nombreComponente: componente, added:false})
+          })
         }
       })
 
     },
 
-    aniadirSubsistema(nombresubsistema){
-      console.log(nombresubsistema)
-    },
+    
 
     aniadirParte(parte){
       console.log(parte)
     },
 
-    aniadirComponente(componente){
-      console.log(componente)
-    },
+    
 
    
 
@@ -809,7 +1171,17 @@ export default {
 
       },
 
+    confirmarCambios(){
+
+      this.generatePdf = true;
+      this.confirmChanges = false;
+      this.serialFactura = util.getserial();
+    },
+
     generarFactura2(){
+
+      
+      
 
       var doc = new jsPDF('p', 'pt');
 
@@ -831,14 +1203,14 @@ export default {
       doc.addImage(dataimage, 'JPEG', 40, 30, 120, 50)
       doc.setFontSize(12)
       doc.setFont("helvetica");
-      doc.text(40, 100, "Factura N° S-2010102");
-      doc.text(40, 120, "Cliente: Diana Carolina Lopez Bermont");
-      doc.text(40, 140, "N° Identificación: 1090578392");
-      doc.text(40, 180, "Automóvil: Audi 3");
-      doc.text(180, 180, "Placa: MIQ-123");
-      doc.text(320, 180, "Año: 2015");
+      doc.text(40, 100, `Factura N° ${this.serialFactura}`);
+      doc.text(40, 120, `Cliente: ${this.nombreSeleccionado} ${this.apellidoSeleccionado}`);
+      doc.text(40, 140, `N° Identificación: ${this.cedulaSeleccionada}`);
+      doc.text(40, 180, `Automóvil: ${this.vehicle.marca} ${this.vehicle.modelo}`);
+      doc.text(200, 180, `Placa: ${this.vehicle.placa}`);
+      doc.text(320, 180, `Año: ${this.vehicle.anio}`);
       doc.text(430, 180, "Kilometraje: 1420 km");
-      doc.text(40, 200, "Mecánico Responsable: Andrés Joel Carrillo");
+      doc.text(40, 200, "Mecánico Responsable: Andrés Carrillo");
       doc.text(320, 200, `Fecha: ${util.date()}`);
       doc.text(430, 200, `Hora: ${util.hour()}`);
 
@@ -852,6 +1224,8 @@ export default {
       doc.autoTable(
         { html: '#tablaprint',
           margin: {top: 220, right: 30, bottom: 0, left: 30} });
+
+      
     
     // Or JavaScript:
     // doc.autoTable({
@@ -863,7 +1237,16 @@ export default {
     //     ]
     // });
     
-    doc.save('factura-sigtam.pdf');
+    doc.save(`${this.serialFactura}.pdf`);
+    
+
+    this.serviciosFactura = [];
+    this.confirmChanges = false;
+    this.generatePdf = false;
+    this.nombresPartes.forEach(nombre => {
+      nombre.inFact = false;
+      nombre.added = false;
+    })
 
     },
     
@@ -900,9 +1283,9 @@ export default {
       })
     },
 
-     addClient(){
+    addClient(){
 
-  
+
              axios.post(`${constants.URL_CLIENTES}`, {
               nombre: this.nombres,
               apellidos: this.apellidos,
@@ -913,6 +1296,7 @@ export default {
             })
             .then(res => {
               
+              this.clienteArchivado = res.data.clientArchived;
               axios.post(`${constants.URL_VEHICULOS}`, {
                     idUser: res.data.clientArchived,
                     marca: this.marcaselected, 
@@ -929,12 +1313,15 @@ export default {
               Swal.fire('Cliente Agregado','Se realizó la inserción con éxito ','success')
             
               this.getAllClients();  
+              this.getAllVehicles();
+              
+              
               $('#modalClienteNuevo').modal('hide')
             })
             .catch(function(){
                 console.log('Ocurrio un error al procesar el archivo');
-             }); }
-
+             }); 
+    }
   }
 }
 

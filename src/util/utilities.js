@@ -8,7 +8,42 @@ let amPm = (hora, minuto) =>{
   } else {
     return "p.m.";
   }
-}
+};
+
+let convertMonth = () => {
+  if (date.getMonth() + 1 < 10) {
+    return `0${date.getMonth() + 1}`;
+  }
+  return date.getMonth() + 1;
+};
+
+let convertDay = () => {
+  if (date.getDate() < 10) {
+    return `0${date.getDate()}`;
+  }
+  return date.getDate();
+};
+
+let convertHours = () => {
+  if (date.getHours() < 10) {
+    return `0${date.getHours()}`;
+  }
+  return date.getHours();
+};
+
+let convertMinutes = () => {
+  if (date.getMinutes() < 10) {
+    return `0${date.getMinutes()}`;
+  }
+  return date.getMinutes();
+};
+
+let convertSeconds = () => {
+  if (date.getSeconds() < 10) {
+    return `0${date.getSeconds()}`;
+  }
+  return date.getSeconds();
+};
 
 const util = {
   emailRegex: /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i,
@@ -56,6 +91,9 @@ const util = {
       date.getHours(),
       date.getMinutes()
     )}`;
+  },
+  getserial: () => {
+    return `SG-${convertDay()}${convertMonth()}${date.getFullYear()}${convertHours()}${convertMinutes()}${convertSeconds()}`;
   }
 };
 

@@ -5,7 +5,7 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h3>Lista de Servicios</h3>
+                  <h3>Historial de Servicios</h3>
                   <div class="fluid-container">
 
                   <div class="row ticket-card mt-5 pb-2 pt-2 border-bottom border-top pb-3 mb-3" style="border-bottom: 3px solid #f2f2f2; border-top: 3px solid #f2f2f2; " v-for="factura in facturas" :key="factura.id">
@@ -36,7 +36,7 @@
                              </div>
                              <div class="d-flex ml-4">
                               <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">Precio Total Servicio:</p>
-                              <p class="text-success font-weight-bold">{{((factura.productos[0].precioVenta) * (factura.productos[0].cantidad)) + ((factura.precioManoObra) + (factura.precioManoObra * 0.19))}}</p>
+                              <p class="text-success font-weight-bold">{{((factura.productosAsociados[0].precioVenta) * (factura.productosAsociados[0].cantidad)) + ((factura.precioManoObra) + (factura.precioManoObra * 0.19))}}</p>
                              </div>
 
                         </div>
@@ -203,23 +203,23 @@
                                             </div> 
                                             <div class="d-flex justify-content-between">
                                               <div style="width:40%;">
-                                                  <p class="mb-0 text-left">{{facturaInd.productos[0].nombre}}</p>
+                                                  <p class="mb-0 text-left">{{facturaInd.productosAsociados[0].nombre}}</p>
                                               </div>
                                               <div style="width:20%;">
-                                                  <p class="mb-0 text-left">{{facturaInd.productos[0].cantidad}}</p>
+                                                  <p class="mb-0 text-left">{{facturaInd.productosAsociados[0].cantidad}}</p>
                                               </div>
                                               <div style="width:20%; ">
-                                                  <p class="mb-0 text-primary text-left">{{facturaInd.productos[0].precioVenta}}</p>
+                                                  <p class="mb-0 text-primary text-left">{{facturaInd.productosAsociados[0].precioVenta}}</p>
                                               </div>
                                               <div style="width:20%;">
-                                                  <p class="mb-0 text-success text-left">{{(facturaInd.productos[0].precioVenta) * (facturaInd.productos[0].cantidad)}}</p>
+                                                  <p class="mb-0 text-success text-left">{{(facturaInd.productosAsociados[0].precioVenta) * (facturaInd.productosAsociados[0].cantidad)}}</p>
                                               </div>                                         
                                             </div>
                                           </div>           
 
                                           <div class="d-flex mt-3 justify-content-between">
                                           <h4 class="font-weight-semibold ml-3 mb-0 no-wrap mt-3">Total a Pagar</h4>  
-                                          <h4 class="text-success font-weight-semibold ml-3 mb-0 no-wrap mt-3">{{((facturaInd.productos[0].precioVenta) * (facturaInd.productos[0].cantidad)) + ((facturaInd.precioManoObra) + (facturaInd.precioManoObra * 0.19))}}</h4>
+                                          <h4 class="text-success font-weight-semibold ml-3 mb-0 no-wrap mt-3">{{((facturaInd.productosAsociados[0].precioVenta) * (facturaInd.productosAsociados[0].cantidad)) + ((facturaInd.precioManoObra) + (facturaInd.precioManoObra * 0.19))}}</h4>
                                           </div>
                                                                                     
                                        </div>
