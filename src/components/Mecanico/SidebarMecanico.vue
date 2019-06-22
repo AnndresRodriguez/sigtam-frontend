@@ -24,7 +24,7 @@
                 <span class="menu-title">Crear Servicio</span>
             </router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link :to="{ name: 'perfilMecanico'}" class="nav-link">
                 <i class="menu-icon mdi mdi-account-star"></i>
                 <span class="menu-title">Ver Servicios Realizados</span>
@@ -47,7 +47,7 @@
                 <i class="menu-icon mdi mdi-television"></i>
                 <span class="menu-title">Mi Perfil</span>
             </router-link>
-          </li>
+          </li> -->
         
         </ul>
       </nav>

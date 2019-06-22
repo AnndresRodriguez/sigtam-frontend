@@ -13,7 +13,7 @@ import Clientes from "./components/Admin/clientes.vue";
 import Servicios from "./components/Admin/services.vue";
 import Productos from "./components/Admin/products.vue";
 import CitasCliente from "./components/Admin/CitasCliente.vue";
-//import firebase from "firebase";
+import firebase from "firebase";
 
 //-----------------Mecanico--------------------------------
 import DashboardMecanico from "./views/DashboardMechanic.vue";
@@ -52,9 +52,9 @@ const router = new Router({
     {
       path: "/dashboardAdmin",
       component: DashboardAdmin,
-      // beforeEnter: (to, from, next) => {
-      //   next(firebase.auth().currentUser !== null);
-      // },
+      beforeEnter: (to, from, next) => {
+        next(firebase.auth().currentUser !== null);
+      },
       children: [
         {
           path: "/",
@@ -86,15 +86,14 @@ const router = new Router({
           name: "citascliente",
           component: CitasCliente
         }
-        
       ]
     },
     {
       path: "/dashboardMecanico",
       component: DashboardMecanico,
-      // beforeEnter: (to, from, next) => {
-      //   next(firebase.auth().currentUser !== null);
-      // },
+      beforeEnter: (to, from, next) => {
+        next(firebase.auth().currentUser !== null);
+      },
       children: [
         {
           path: "/",
