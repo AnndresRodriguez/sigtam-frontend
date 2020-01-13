@@ -7,7 +7,7 @@
           <h2 style="color: black;">SIGTAM</h2>
         </a>
         <a href="index.html" class="navbar-brand brand-logo-mini">
-          <img src="../../assets/img/logo-mini.svg" alt="logo">
+          <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254607/logo-mini.8539ea86_rfpcna.svg" alt="logo">
         </a>
       </div>
       
@@ -25,7 +25,7 @@
             >
               <span class="profile-text">Bienvenido, Andrés</span>
               <img
-                src="../../assets/img/faces/Mecanico.jpg"
+                src="https://res.cloudinary.com/sigtam/image/upload/v1561254608/Mecanico.8f0bed06_uipber.jpg"
                 alt="Profile image"
                 class="img-xs rounded-circle"
               >

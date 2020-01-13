@@ -52,9 +52,9 @@ const router = new Router({
     {
       path: "/dashboardAdmin",
       component: DashboardAdmin,
-      beforeEnter: (to, from, next) => {
-        next(firebase.auth().currentUser !== null);
-      },
+      // beforeEnter: (to, from, next) => {
+      //   next(firebase.auth().currentUser !== null);
+      // },
       children: [
         {
           path: "/",
@@ -91,9 +91,9 @@ const router = new Router({
     {
       path: "/dashboardMecanico",
       component: DashboardMecanico,
-      beforeEnter: (to, from, next) => {
-        next(firebase.auth().currentUser !== null);
-      },
+      // beforeEnter: (to, from, next) => {
+      //   next(firebase.auth().currentUser !== null);
+      // },
       children: [
         {
           path: "/",

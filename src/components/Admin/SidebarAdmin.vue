@@ -8,7 +8,7 @@
               <div class="user-wrapper mt-3">
                 
                 <div class="profile-image ">
-                  <img src="../../assets/img/faces/karen.jpg" alt="profile image">
+                  <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254608/karen.c799db6c_vt72pi.jpg" alt="profile image">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name">Karen Cuevas</p>

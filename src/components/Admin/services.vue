@@ -11,7 +11,7 @@
                   <div class="row ticket-card mt-5 pb-2 pt-2 border-bottom border-top pb-3 mb-3" style="border-bottom: 3px solid #f2f2f2; border-top: 3px solid #f2f2f2; " v-for="factura in facturas" :key="factura.id">
                       
                       <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/servicio.jpg" alt="profile image">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="https://res.cloudinary.com/sigtam/image/upload/v1561254612/servicio.cba3967a_bbyvvy.jpg" alt="profile image">
                       </div>
 
                       <div class="ticket-details col-md-9">

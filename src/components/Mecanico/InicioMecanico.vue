@@ -679,11 +679,8 @@
 import axios from "axios"
 import constants from "../../config/constants.js"
 import util from "../../util/utilities.js"
-import jsPDF from "jspdf";
 import Swal from "sweetalert2";
 import $ from "jquery"
-import 'jspdf-autotable';
-import html2canvas from "html2canvas"
 import html2pdf from "html2pdf.js"
 
 export default {

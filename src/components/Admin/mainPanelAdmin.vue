@@ -8,7 +8,7 @@
                   <div class="fluid-container">
                     <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                       <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/icono-mecanico.jpg" alt="profile image">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="https://res.cloudinary.com/sigtam/image/upload/v1561254598/icono-mecanico.8013d442_ikia5j.jpg" alt="profile image">
                       </div>
                       <div class="ticket-details col-md-9">
                         <div class="d-flex">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                       <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/icono-mecanico.jpg" alt="profile image">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="https://res.cloudinary.com/sigtam/image/upload/v1561254598/icono-mecanico.8013d442_ikia5j.jpg" alt="profile image">
                       </div>
                       <div class="ticket-details col-md-9">
                         <div class="d-flex">
@@ -96,7 +96,7 @@
                     </div>
                      <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                       <div class="col-md-1">
-                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../assets/img/faces/icono-mecanico.jpg" alt="profile image">
+                        <img class="img-sm rounded-circle mb-4 mb-md-0" src="https://res.cloudinary.com/sigtam/image/upload/v1561254598/icono-mecanico.8013d442_ikia5j.jpg" alt="profile image">
                       </div>
                       <div class="ticket-details col-md-9">
                         <div class="d-flex">

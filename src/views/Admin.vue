@@ -11,7 +11,7 @@
               </div>
               <div class="form-group">
                   <div class="d-flex flex-column justify-content-between align-items-center">
-                      <img src="../assets/img/auth-img/logo-admin-250x250.jpg" alt="Foto Admin" style="border-radius:50%" height="130" width="130">
+                      <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254602/logo-admin-250x250.e0840215_fyupnq.jpg" alt="Foto Admin" style="border-radius:50%" height="130" width="130">
                       <h5 class="mt-2">Administrador</h5>
                   </div>                 
               </div>
