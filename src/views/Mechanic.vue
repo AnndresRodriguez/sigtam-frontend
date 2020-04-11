@@ -12,7 +12,7 @@
                 <div class="form-group">
                   <div class="d-flex flex-column justify-content-between align-items-center">
                     <img
-                      src="../assets/img/auth-img/mecanico-130x130.jpg"
+                      src="https://res.cloudinary.com/sigtam/image/upload/v1561254614/mecanico-130x130.16c2b481_xqezjt.jpg"
                       alt="Foto Admin"
                       style="border-radius:50%"
                     >

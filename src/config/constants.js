@@ -1,20 +1,20 @@
 
 //let LOCALHOST =  "localhost:3000";
-let API_SIGTAM = "localhost:3000";
+let API_SIGTAM = "sigtam-api.herokuapp.com";
 
 const constants = {
-  URL_ADMIN: `http://${API_SIGTAM}/admin/`,
-  URL_CARROCERIA: `http://${API_SIGTAM}/carroceria/`,
-  URL_CHASIS: `http://${API_SIGTAM}/chasis/`,
-  URL_CITAS: `http://${API_SIGTAM}/citas/`,
-  URL_CLIENTES: `http://${API_SIGTAM}/clientes`,
-  URL_FACTURAS: `http://${API_SIGTAM}/facturas`,
-  URL_MARCAS: `http://${API_SIGTAM}/marcas`,
-  URL_MECANICOS: `http://${API_SIGTAM}/mecanicos`,
-  URL_PRODUCTOS: `http://${API_SIGTAM}/productos`,
-  URL_PROVEEDORES: `http://${API_SIGTAM}/proveedores`,
-  URL_SERVICIOS: `http://${API_SIGTAM}/servicios`,
-  URL_VEHICULOS: `http://${API_SIGTAM}/vehiculos`,
+  URL_ADMIN: `https://${API_SIGTAM}/admin/`,
+  URL_CARROCERIA: `https://${API_SIGTAM}/carroceria/`,
+  URL_CHASIS: `https://${API_SIGTAM}/chasis/`,
+  URL_CITAS: `https://${API_SIGTAM}/citas/`,
+  URL_CLIENTES: `https://${API_SIGTAM}/clientes`,
+  URL_FACTURAS: `https://${API_SIGTAM}/facturas`,
+  URL_MARCAS: `https://${API_SIGTAM}/marcas`,
+  URL_MECANICOS: `https://${API_SIGTAM}/mecanicos`,
+  URL_PRODUCTOS: `https://${API_SIGTAM}/productos`,
+  URL_PROVEEDORES: `https://${API_SIGTAM}/proveedores`,
+  URL_SERVICIOS: `https://${API_SIGTAM}/servicios`,
+  URL_VEHICULOS: `https://${API_SIGTAM}/vehiculos`,
   config: {
     apiKey: "AIzaSyDb8y1_DlHuoqQuU7K-ykGr9qh81rbwFC4",
     authDomain: "mecanicapp-47db0.firebaseapp.com",

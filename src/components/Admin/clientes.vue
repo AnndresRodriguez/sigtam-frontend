@@ -33,7 +33,7 @@
 
                         <tr v-for="client in clientes" :key="client.id">
                           <td class="py-1">
-                            <img src="../../assets/img/faces/propietario.jpg" alt="image" />
+                            <img src="https://res.cloudinary.com/sigtam/image/upload/v1561255922/propietario_jkwmon.jpg" alt="image" />
                           </td>
                           <td>
                             {{ client.nombre }} {{client.apellidos}}
@@ -141,7 +141,7 @@
                     <div class="card-body">
                       <p class="text-primary">
                         Los Campos marcados con (*) no pueden quedar vacíos <br>
-                        Es Obligatorio Añadir un Auto al Cliente Nuevo
+
                         </p>
                       <form class="forms-sample" @submit.prevent="addClient()" enctype="multipart/form-data">
                       <template v-if="!addCar">
@@ -317,7 +317,7 @@
                     <div class="card-body">
                 <template v-if="!editing">
                     <div class="d-flex flex-row justify-content-center">
-                      <img src="../../assets/img/faces/icono-auto-2.jpg" alt="auto" class="img-responsive">
+                      <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254608/icono-auto-2.ae1a4670_oqsf85.jpg" alt="auto" class="img-responsive">
                     </div>
                     <div class="row ticket-card mt-3 border-bottom mb-3">
                       <div class="ticket-details col-md-12">
@@ -631,7 +631,7 @@ export default {
           })
         },
         viewMarcas(marca){
-          console.log(`marca Seleccionada: ${marca}`);
+          // console.log(`marca Seleccionada: ${marca}`);
           axios.get(`${constants.URL_MARCAS}/modelos/${marca}`)
           .then(res => {
              this.modelos = res.data;

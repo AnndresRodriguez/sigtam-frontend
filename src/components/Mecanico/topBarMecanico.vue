@@ -1,14 +1,16 @@
 <template>
   <div>
+    
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a href="index.html" class="navbar-brand brand-logo mt-2">
           <h2 style="color: black;">SIGTAM</h2>
         </a>
         <a href="index.html" class="navbar-brand brand-logo-mini">
-          <img src="../../assets/img/logo-mini.svg" alt="logo">
+          <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254607/logo-mini.8539ea86_rfpcna.svg" alt="logo">
         </a>
       </div>
+      
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex"></ul>
         <ul class="navbar-nav navbar-nav-right">
@@ -23,7 +25,7 @@
             >
               <span class="profile-text">Bienvenido, Andrés</span>
               <img
-                src="../../assets/img/faces/Mecanico.jpg"
+                src="https://res.cloudinary.com/sigtam/image/upload/v1561254608/Mecanico.8f0bed06_uipber.jpg"
                 alt="Profile image"
                 class="img-xs rounded-circle"
               >

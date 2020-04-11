@@ -2,11 +2,13 @@
   <div>
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <li class="nav-item nav-profile">
+          <li class="nav-item nav-profile mt-3">
             <div class="nav-link">
-              <div class="user-wrapper">
-                <div class="profile-image">
-                  <img src="../../assets/img/faces/karen.jpg" alt="profile image">
+              <h3>SIGTAM</h3>
+              <div class="user-wrapper mt-3">
+                
+                <div class="profile-image ">
+                  <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254608/karen.c799db6c_vt72pi.jpg" alt="profile image">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name">Karen Cuevas</p>
@@ -51,6 +53,13 @@
                 <span class="menu-title">Productos</span>
             </router-link>
           </li>
+
+          <!-- <li class="nav-item">
+            <router-link :to="{ name: 'citascliente'}" class="nav-link">
+                <i class="menu-icon mdi mdi-buffer"></i>
+                <span class="menu-title">Citas Cliente</span>
+            </router-link>
+          </li> -->
         
         </ul>
       </nav>
