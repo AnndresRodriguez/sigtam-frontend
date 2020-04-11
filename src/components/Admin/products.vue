@@ -156,7 +156,9 @@ export default {
            axios
               .post(`${constants.URL_PRODUCTOS}/all/${idProduct}`)
               .then(res => {
-                  this.productos = res.data.allproductos;
+                
+                  this.productos = res.data.allproductos
+
                   this.cantProducts = this.productos.length;
                   console.log('cantidad de productos', this.cantProducts)
                }).catch(err => console.log(err));
@@ -207,8 +209,10 @@ export default {
               .then(res => {
                   this.productos = res.data.allproductos
                   this.cantProducts = this.productos.length;
+                  // this.cantProducts = this.productos.length;
+
                }).catch(err => console.log(err));
-          
+    
 
        },
        iconoProducto(){
