@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Principal from "./views/Principal.vue";
 import Admin from "./views/Admin.vue";
 import Mechanic from "./views/Mechanic.vue";
+import Citas from "./views/Citas.vue";
 
 //-----------------Admin---------------------------npm ru -----
 import DashboardAdmin from "./views/DashboardAdmin.vue";
@@ -11,6 +12,7 @@ import Mecanicos from "./components/Admin/mechanics.vue";
 import Clientes from "./components/Admin/clientes.vue";
 import Servicios from "./components/Admin/services.vue";
 import Productos from "./components/Admin/products.vue";
+import CitasCliente from "./components/Admin/CitasCliente.vue";
 import firebase from "firebase";
 
 //-----------------Mecanico--------------------------------
@@ -26,6 +28,12 @@ const router = new Router({
       path: "*",
       redirect: "/"
     },
+    {
+      path: "/citas",
+      name: "citas",
+      component: Citas
+    },
+
     {
       path: "/",
       name: "index",
@@ -72,6 +80,11 @@ const router = new Router({
           path: "/productos",
           name: "productos",
           component: Productos
+        },
+        {
+          path: "/citas-cliente",
+          name: "citascliente",
+          component: CitasCliente
         }
       ]
     },

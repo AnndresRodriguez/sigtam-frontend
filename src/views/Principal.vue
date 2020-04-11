@@ -13,13 +13,13 @@
               <div class="form-group d-flex flex-row justify-content-between">
                   <router-link :to="{ name: 'admin' }">
                         <div class="d-flex flex-column justify-content-between align-items-center container-img-login" >
-                            <img src="../assets/img/auth-img/logo-admin-250x250.jpg" alt="Foto Admin" style="border-radius:50%" height="130" width="130" class="foto-admin">
+                            <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254602/logo-admin-250x250.e0840215_fyupnq.jpg" alt="Foto Admin" style="border-radius:50%" height="130" width="130" class="foto-admin">
                             <h5 class="mt-2">Administrador</h5>
                         </div> 
                   </router-link>
                   <router-link :to="{ name: 'mechanic' }">
                    <div class="d-flex flex-column justify-content-between align-items-center container-img-login" >
-                      <img src="../assets/img/auth-img/mecanico-130x130.jpg" alt="Foto Admin" style="border-radius:50%" class="foto-mecanico">
+                      <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254614/mecanico-130x130.16c2b481_xqezjt.jpg" alt="Foto Admin" style="border-radius:50%" class="foto-mecanico">
                       <h5 class="mt-2">Mecánico</h5>
                   </div> 
                   </router-link>               

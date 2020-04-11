@@ -35,7 +35,7 @@
 
               <modal-aniadir :sizeArray="cantProducts"></modal-aniadir>
           
-              <template v-if="productos==null">
+              <template v-if="productos == null">
                     <div class="spinner">
                               <div class="rect1 mr-1"></div>
                               <div class="rect2 mr-1"></div>
@@ -156,7 +156,11 @@ export default {
            axios
               .post(`${constants.URL_PRODUCTOS}/all/${idProduct}`)
               .then(res => {
+<<<<<<< HEAD
                   this.productos = res.data.allproductos
+=======
+                  this.productos = res.data.allproductos;
+>>>>>>> segundoscambios
                   this.cantProducts = this.productos.length;
                   console.log('cantidad de productos', this.cantProducts)
                }).catch(err => console.log(err));
@@ -182,8 +186,8 @@ export default {
         if (result.value) {
           axios.delete(`${constants.URL_PRODUCTOS}/${this.categoria}`, {params: {idProductToDelete: idProduct} } )
           .then(res => {
-              console.log(res)
-              this.productos = null;
+              console.log(res.data)
+              
               this.getAllProducts(this.categoria);
               
           })
@@ -206,7 +210,11 @@ export default {
               .post(`${constants.URL_PRODUCTOS}/all/1`)
               .then(res => {
                   this.productos = res.data.allproductos
+<<<<<<< HEAD
                   this.cantProducts = this.productos.length;
+=======
+                  // this.cantProducts = this.productos.length;
+>>>>>>> segundoscambios
                }).catch(err => console.log(err));
           
 

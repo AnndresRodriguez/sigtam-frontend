@@ -6,7 +6,7 @@
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                  <img src="../../assets/img/faces/Mecanico.jpg" alt="profile image">
+                  <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254608/Mecanico.8f0bed06_uipber.jpg" alt="profile image">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name">Andres Carrillo</p>
@@ -24,7 +24,7 @@
                 <span class="menu-title">Crear Servicio</span>
             </router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link :to="{ name: 'perfilMecanico'}" class="nav-link">
                 <i class="menu-icon mdi mdi-account-star"></i>
                 <span class="menu-title">Ver Servicios Realizados</span>
@@ -47,7 +47,7 @@
                 <i class="menu-icon mdi mdi-television"></i>
                 <span class="menu-title">Mi Perfil</span>
             </router-link>
-          </li>
+          </li> -->
         
         </ul>
       </nav>

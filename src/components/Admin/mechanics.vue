@@ -38,7 +38,7 @@
 
                         <tr v-for="mechanic in mechanics" :key="mechanic.id">
                           <td class="py-1">
-                            <img src="../../assets/img/faces/icono-mecanico.jpg" alt="image" />
+                            <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254598/icono-mecanico.8013d442_ikia5j.jpg" alt="image" />
                           </td>
                           <td>
                             {{ mechanic.nombre }} {{mechanic.apellidos}}
