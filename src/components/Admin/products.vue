@@ -1,6 +1,6 @@
 <template>
-     <div>
-          <div class="card">
+  <div>
+    <div class="card">
                 <div class="card-body">
                   <h3>Lista de Productos</h3>
 
@@ -156,11 +156,7 @@ export default {
            axios
               .post(`${constants.URL_PRODUCTOS}/all/${idProduct}`)
               .then(res => {
-<<<<<<< HEAD
-                  this.productos = res.data.allproductos
-=======
                   this.productos = res.data.allproductos;
->>>>>>> segundoscambios
                   this.cantProducts = this.productos.length;
                   console.log('cantidad de productos', this.cantProducts)
                }).catch(err => console.log(err));
@@ -210,11 +206,7 @@ export default {
               .post(`${constants.URL_PRODUCTOS}/all/1`)
               .then(res => {
                   this.productos = res.data.allproductos
-<<<<<<< HEAD
                   this.cantProducts = this.productos.length;
-=======
-                  // this.cantProducts = this.productos.length;
->>>>>>> segundoscambios
                }).catch(err => console.log(err));
           
 
