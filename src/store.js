@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import constants from "./config/constants";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -30,10 +30,10 @@ export default new Vuex.Store({
       return state.nombreCategoria;
     },
     getCantProducts: state => {
-      if(state.productos!=null){
+      if (state.productos != null) {
         return state.productos.length;
       }
-      return 0
+      return 0;
     }
   },
   mutations: {
@@ -92,31 +92,33 @@ export default new Vuex.Store({
     },
 
     DELETE_PRODUCT: (state, element) => {
-
       Swal.fire({
-        title: 'Está seguro de hacer la eliminación',
+        title: "Está seguro de hacer la eliminación",
         text: "Recuerde que no podrá recuperar el contenido del mecánico",
-        type: 'warning',
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Eliminar',
-        cancelButtonText: 'Cancelar'
-      }).then( result => {
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar"
+      }).then(result => {
         if (result.value) {
-          axios.delete(`${constants.URL_PRODUCTOS}/${element.category}`, {params: {idProductToDelete: element.id} } )
-          .then(res => {
-              console.log(res)
-          })
+          axios
+            .delete(`${constants.URL_PRODUCTOS}/${element.category}`, {
+              params: { idProductToDelete: element.id }
+            })
+            .then(res => {
+              console.log(res);
+            });
           Swal.fire(
-            'Datos del Mecánico Eliminados',
-            'El registro ha sido eliminado de la base de datos',
-            'success'
-          ); 
+            "Datos del Mecánico Eliminados",
+            "El registro ha sido eliminado de la base de datos",
+            "success"
+          );
         }
-      })
+      });
     },
-    
+
     CREATE_CURRENT_PRODUCT: (state, element) => {
       state.product = element;
     }
@@ -137,11 +139,11 @@ export default new Vuex.Store({
     editProduct({ commit }, element) {
       commit("EDIT_PRODUCT", element);
     },
-    createCurrentProduct({ commit }, element){
-      commit("CREATE_CURRENT_PRODUCT", element)
+    createCurrentProduct({ commit }, element) {
+      commit("CREATE_CURRENT_PRODUCT", element);
     },
-    deleteProduct({ commit }, element){
-      commit("DELETE_PRODUCT", element)
+    deleteProduct({ commit }, element) {
+      commit("DELETE_PRODUCT", element);
     }
   }
 });

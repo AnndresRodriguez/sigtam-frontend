@@ -1,30 +1,33 @@
 <template>
   <div>
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item nav-profile">
-            <div class="nav-link">
-              <div class="user-wrapper">
-                <div class="profile-image">
-                  <img src="https://res.cloudinary.com/sigtam/image/upload/v1561254608/Mecanico.8f0bed06_uipber.jpg" alt="profile image">
-                </div>
-                <div class="text-wrapper">
-                  <p class="profile-name">Andres Carrillo</p>
-                  <div>
-                    <small class="designation text-muted">Mecanico</small>
-                    <span class="status-indicator online"></span>
-                  </div>
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item nav-profile">
+          <div class="nav-link">
+            <div class="user-wrapper">
+              <div class="profile-image">
+                <img
+                  src="https://res.cloudinary.com/sigtam/image/upload/v1561254608/Mecanico.8f0bed06_uipber.jpg"
+                  alt="profile image"
+                />
+              </div>
+              <div class="text-wrapper">
+                <p class="profile-name">Andres Carrillo</p>
+                <div>
+                  <small class="designation text-muted">Mecanico</small>
+                  <span class="status-indicator online"></span>
                 </div>
               </div>
             </div>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{ name: 'inicioMecanico'}" class="nav-link">
-                <i class="menu-icon mdi mdi-settings"></i>
-                <span class="menu-title">Crear Servicio</span>
-            </router-link>
-          </li>
-          <!-- <li class="nav-item">
+          </div>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'inicioMecanico' }" class="nav-link">
+            <i class="menu-icon mdi mdi-settings"></i>
+            <span class="menu-title">Crear Servicio</span>
+          </router-link>
+        </li>
+        <!-- <li class="nav-item">
             <router-link :to="{ name: 'perfilMecanico'}" class="nav-link">
                 <i class="menu-icon mdi mdi-account-star"></i>
                 <span class="menu-title">Ver Servicios Realizados</span>
@@ -48,19 +51,13 @@
                 <span class="menu-title">Mi Perfil</span>
             </router-link>
           </li> -->
-        
-        </ul>
-      </nav>
+      </ul>
+    </nav>
   </div>
-      
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

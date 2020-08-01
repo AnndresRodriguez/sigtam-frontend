@@ -22,41 +22,83 @@
 
                 <div class="ticket-details col-md-9">
                   <div class="d-flex">
-                    <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">Cliente:</p>
-                    <p>{{`${factura.nombreCliente} ${factura.apellidosCliente}` }}</p>
-                    <p class="text-dark font-weight-semibold ml-3 mr-2 mb-0 no-wrap">Automóvil:</p>
-                    <p>{{`${factura.vehiculoMarca} ${factura.vehiculoModelo}` }}</p>
-                    <p class="text-dark font-weight-semibold ml-3 mr-2 mb-0 no-wrap">Placa:</p>
-                    <p>{{`${factura.vehiculoPlaca}`}}</p>
+                    <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">
+                      Cliente:
+                    </p>
+                    <p>
+                      {{
+                        `${factura.nombreCliente} ${factura.apellidosCliente}`
+                      }}
+                    </p>
+                    <p
+                      class="text-dark font-weight-semibold ml-3 mr-2 mb-0 no-wrap"
+                    >
+                      Automóvil:
+                    </p>
+                    <p>
+                      {{ `${factura.vehiculoMarca} ${factura.vehiculoModelo}` }}
+                    </p>
+                    <p
+                      class="text-dark font-weight-semibold ml-3 mr-2 mb-0 no-wrap"
+                    >
+                      Placa:
+                    </p>
+                    <p>{{ `${factura.vehiculoPlaca}` }}</p>
                   </div>
 
                   <div class="d-flex">
                     <div class="d-flex">
-                      <p class="text-dark font-weight-semibold mr-2 mb-0 no-wrap">Tipo de Servicio:</p>
-                      <p class="text-primary mr-1 mb-0">[{{factura.tipo}}]</p>
+                      <p
+                        class="text-dark font-weight-semibold mr-2 mb-0 no-wrap"
+                      >
+                        Tipo de Servicio:
+                      </p>
+                      <p class="text-primary mr-1 mb-0">[{{ factura.tipo }}]</p>
                     </div>
                     <div class="d-flex ml-2">
-                      <p class="text-dark font-weight-semibold mr-2 ml-3 mb-0 no-wrap">Responsable:</p>
-                      <p>Mecánico {{factura.responsableNombre +" "+ factura.responsableApellidos}}</p>
+                      <p
+                        class="text-dark font-weight-semibold mr-2 ml-3 mb-0 no-wrap"
+                      >
+                        Responsable:
+                      </p>
+                      <p>
+                        Mecánico
+                        {{
+                          factura.responsableNombre +
+                            " " +
+                            factura.responsableApellidos
+                        }}
+                      </p>
                     </div>
                     <div class="d-flex ml-4">
                       <p
                         class="text-dark font-weight-semibold mr-2 mb-0 no-wrap"
-                      >Precio Total Servicio:</p>
-                      <p
-                        class="text-success font-weight-bold"
-                      >{{((factura.productos[0].precioVenta) * (factura.productos[0].cantidad)) + ((factura.precioManoObra) + (factura.precioManoObra * 0.19))}}</p>
+                      >
+                        Precio Total Servicio:
+                      </p>
+                      <p class="text-success font-weight-bold">
+                        {{
+                          factura.productos[0].precioVenta *
+                            factura.productos[0].cantidad +
+                            (factura.precioManoObra +
+                              factura.precioManoObra * 0.19)
+                        }}
+                      </p>
                     </div>
                   </div>
 
                   <div class="row text-gray d-md-flex d-none">
                     <div class="col-4 d-flex">
                       <small class="mb-0 mr-2">Fecha de Reparación :</small>
-                      <small class="Last-responded mr-2 mb-0 text-dark">{{factura.fecha}}</small>
+                      <small class="Last-responded mr-2 mb-0 text-dark">{{
+                        factura.fecha
+                      }}</small>
                     </div>
                     <div class="col-4 d-flex">
                       <small class="mb-0 mr-2">Hora de Reparación :</small>
-                      <small class="Last-responded mr-2 mb-0 text-dark">{{factura.hora}}</small>
+                      <small class="Last-responded mr-2 mb-0 text-dark">{{
+                        factura.hora
+                      }}</small>
                     </div>
                   </div>
                 </div>
@@ -69,7 +111,11 @@
                     data-target="#modalVerDetalles"
                     @click="getDetalles(factura._id)"
                   >
-                    <i class="menu-icon mdi mdi-account-star" aria-hidden="true"></i>Ver Detalles
+                    <i
+                      class="menu-icon mdi mdi-account-star"
+                      aria-hidden="true"
+                    ></i
+                    >Ver Detalles
                   </button>
                 </div>
               </div>
@@ -90,7 +136,7 @@
         </div>
       </div>
     </div>
-    <pre>{{$data}}</pre>
+    <pre>{{ $data }}</pre>
   </div>
 </template>
 
@@ -156,5 +202,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

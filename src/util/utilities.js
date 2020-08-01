@@ -1,6 +1,6 @@
 const date = new Date();
 
-let amPm = (hora, minuto) =>{
+let amPm = (hora, minuto) => {
   if (hora < 12) {
     return "a.m.";
   } else if (hora == 12 && minuto == 0) {

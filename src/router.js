@@ -13,12 +13,11 @@ import Clientes from "./components/Admin/clientes.vue";
 import Servicios from "./components/Admin/services.vue";
 import Productos from "./components/Admin/products.vue";
 import CitasCliente from "./components/Admin/CitasCliente.vue";
-import firebase from "firebase";
+// import firebase from "firebase";
 
 //-----------------Mecanico--------------------------------
 import DashboardMecanico from "./views/DashboardMechanic.vue";
 import MainMecanico from "./components/Mecanico/InicioMecanico.vue";
-
 
 Vue.use(Router);
 
@@ -139,9 +138,8 @@ const router = new Router({
 
 export default router;
 
-
 // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: () =>
-      //   import(/* webpackChunkName: "about" */ "./views/About.vue")
+// this generates a separate chunk (about.[hash].js) for this route
+// which is lazy-loaded when the route is visited.
+// component: () =>
+//   import(/* webpackChunkName: "about" */ "./views/About.vue")
